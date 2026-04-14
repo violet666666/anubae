@@ -6,71 +6,69 @@ const PrivacyPolicy = () => (
     <Header />
     <div className="bg-white min-h-screen pt-28 pb-24 px-4 md:px-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-black text-4xl md:text-5xl font-bold tracking-tight mb-8">Privacy Policy</h1>
-        <p className="text-gray-500 text-sm mb-12">Last updated: January 15, 2024</p>
+        <h1 className="text-black text-4xl md:text-5xl font-bold tracking-tight mb-8">Kebijakan Privasi</h1>
+        <p className="text-gray-500 text-sm mb-12">Terakhir diperbarui: 15 Januari 2024</p>
 
         <div className="space-y-10 text-gray-700 text-lg leading-relaxed">
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">1. Information We Collect</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">1. Informasi yang Kami Kumpulkan</h2>
             <p>
-              At Shutter Theory Photography Academy, we collect information you provide directly to us when you
-              create an account, enroll in courses, book consultations, or communicate with us. This includes your
-              name, email address, phone number, billing information, and any photography portfolio submissions.
+              Di Anubae Organizer, kami mengumpulkan informasi yang Anda berikan secara langsung saat
+              menghubungi kami, melakukan konsultasi, atau memesan layanan kami. Ini termasuk nama, alamat email,
+              nomor telepon, informasi pembayaran, dan detail acara yang Anda rencanakan.
             </p>
             <p className="mt-4">
-              We also automatically collect certain information when you visit our website, including your IP address,
-              browser type, device information, pages visited, and referring URL. We use cookies and similar
-              technologies to enhance your browsing experience and analyze site traffic.
+              Kami juga secara otomatis mengumpulkan informasi tertentu saat Anda mengunjungi situs web kami,
+              termasuk alamat IP, jenis browser, informasi perangkat, halaman yang dikunjungi, dan URL perujuk.
             </p>
           </section>
 
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">2. How We Use Your Information</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">2. Penggunaan Informasi</h2>
             <ul className="list-disc pl-6 space-y-3">
-              <li>Process course enrollments and manage your student account</li>
-              <li>Send course materials, assignments, and feedback on your photography work</li>
-              <li>Communicate about schedule changes, new course offerings, and academy events</li>
-              <li>Process payments and send transaction confirmations</li>
-              <li>Improve our website, courses, and overall student experience</li>
-              <li>Respond to your comments, questions, and consultation requests</li>
+              <li>Memproses pemesanan layanan dan mengelola acara Anda</li>
+              <li>Mengirimkan informasi terkait perencanaan dan koordinasi acara</li>
+              <li>Berkomunikasi tentang perubahan jadwal, penawaran layanan baru, dan promo</li>
+              <li>Memproses pembayaran dan mengirim konfirmasi transaksi</li>
+              <li>Meningkatkan situs web, layanan, dan pengalaman klien kami</li>
+              <li>Menanggapi pertanyaan dan permintaan konsultasi Anda</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">3. Sharing Your Information</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">3. Berbagi Informasi</h2>
             <p>
-              We do not sell, trade, or rent your personal information to third parties. We may share your
-              information with trusted service providers who assist us in operating our website, processing payments,
-              and delivering courses — provided they agree to keep your information confidential.
+              Kami tidak menjual, memperdagangkan, atau menyewakan informasi pribadi Anda kepada pihak ketiga.
+              Kami dapat membagikan informasi Anda dengan penyedia layanan tepercaya yang membantu kami
+              mengoperasikan situs web dan memproses pembayaran.
             </p>
           </section>
 
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">4. Student Photography & Portfolio</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">4. Dokumentasi Acara</h2>
             <p>
-              Photographs submitted as part of coursework remain your intellectual property. With your explicit
-              consent, we may feature exceptional student work in our gallery, marketing materials, or social media
-              channels. You may withdraw this consent at any time by contacting us at hello@shuttertheory.com.
+              Foto dan video dokumentasi acara yang kami tangani dapat digunakan untuk portofolio dan
+              materi pemasaran kami dengan persetujuan eksplisit dari klien. Anda dapat menarik persetujuan
+              ini kapan saja dengan menghubungi kami di hello@anubaeorganizer.com.
             </p>
           </section>
 
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">5. Data Security</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">5. Keamanan Data</h2>
             <p>
-              We implement industry-standard security measures to protect your personal information, including
-              SSL encryption, secure payment processing through Stripe, and regular security audits. However,
-              no method of transmission over the Internet is 100% secure.
+              Kami menerapkan langkah-langkah keamanan standar industri untuk melindungi informasi pribadi Anda,
+              termasuk enkripsi SSL dan pemrosesan pembayaran yang aman.
             </p>
           </section>
 
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">6. Contact Us</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">6. Hubungi Kami</h2>
             <p>
-              If you have any questions about this Privacy Policy, please contact us at{" "}
-              <a href="mailto:hello@shuttertheory.com" className="text-amber-600 hover:text-amber-500 underline">
-                hello@shuttertheory.com
+              Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini, silakan hubungi kami di{" "}
+              <a href="mailto:hello@anubaeorganizer.com" className="text-amber-600 hover:text-amber-500 underline">
+                hello@anubaeorganizer.com
               </a>{" "}
-              or call us at +1 (555) 789-0123.
+              atau hubungi +62 812-3456-7890.
             </p>
           </section>
         </div>

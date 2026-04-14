@@ -1,25 +1,19 @@
-import captureStorm from "@/assets/capture-storm.jpg";
-import captureArch from "@/assets/capture-architecture.jpg";
-import captureVintage from "@/assets/capture-vintage.jpg";
-import captureMountain from "@/assets/capture-mountain.jpg";
-import capturePortrait from "@/assets/capture-portrait.jpg";
-import captureNight from "@/assets/capture-nightsky.jpg";
 import FadeInSection from "./FadeInSection";
 
 const images = [
-  { src: captureStorm, alt: "Dramatic storm clouds at sunset", label: "Storm Chasing" },
-  { src: captureArch, alt: "Urban architecture from unique angle", label: "Architecture" },
-  { src: captureVintage, alt: "Vintage camera equipment on wooden surface", label: "Gear Workshop" },
-  { src: captureMountain, alt: "Mountain landscape at blue hour", label: "Blue Hour Hike" },
-  { src: capturePortrait, alt: "Behind-the-scenes outdoor portrait shoot", label: "Portrait Session" },
-  { src: captureNight, alt: "Night sky with stars", label: "Astrophotography" },
+  { src: "https://images.pexels.com/photos/1114425/pexels-photo-1114425.jpeg?auto=compress&cs=tinysrgb&w=600", alt: "Dekorasi pernikahan mewah", label: "Pernikahan" },
+  { src: "https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?auto=compress&cs=tinysrgb&w=600", alt: "Acara seminar perusahaan", label: "Corporate" },
+  { src: "https://images.pexels.com/photos/1729797/pexels-photo-1729797.jpeg?auto=compress&cs=tinysrgb&w=600", alt: "Dekorasi pesta ulang tahun", label: "Ulang Tahun" },
+  { src: "https://images.pexels.com/photos/587741/pexels-photo-587741.jpeg?auto=compress&cs=tinysrgb&w=600", alt: "Setup meja gala dinner", label: "Gala Dinner" },
+  { src: "https://images.pexels.com/photos/2291462/pexels-photo-2291462.jpeg?auto=compress&cs=tinysrgb&w=600", alt: "Acara outdoor gathering", label: "Garden Party" },
+  { src: "https://images.pexels.com/photos/3171770/pexels-photo-3171770.jpeg?auto=compress&cs=tinysrgb&w=600", alt: "Pesta perayaan meriah", label: "Perayaan" },
 ];
 
 const CaptureWithUs = () => (
   <section className="bg-background py-24 px-4 md:px-8">
     <FadeInSection>
       <h2 className="text-center text-foreground text-5xl md:text-6xl font-bold tracking-tight mb-16">
-        CAPTURE WITH US
+        PORTFOLIO ACARA KAMI
       </h2>
     </FadeInSection>
     <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-6">

@@ -4,15 +4,15 @@ import { galleryImages } from "@/data/galleryData";
 import FadeInSection from "./FadeInSection";
 
 const Gallery = () => (
-  <section id="gallery" className="bg-muted py-24 overflow-hidden">
+  <section id="portofolio" className="bg-muted py-24 overflow-hidden">
     <FadeInSection>
       <div className="px-4 md:px-8 text-center mb-16">
-        <h2 className="text-foreground text-5xl md:text-6xl font-bold tracking-tight mb-4">GALLERY</h2>
+        <h2 className="text-foreground text-5xl md:text-6xl font-bold tracking-tight mb-4">PORTOFOLIO</h2>
         <Link
           to="/gallery"
           className="inline-flex items-center gap-2 bg-foreground/10 text-foreground px-6 py-3 rounded-full font-medium text-sm hover:bg-primary hover:text-primary-foreground transition-all duration-300 group"
         >
-          View full gallery
+          Lihat semua portofolio
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
