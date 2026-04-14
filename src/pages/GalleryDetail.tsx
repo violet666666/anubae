@@ -1,5 +1,5 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Camera, Clock, Aperture } from "lucide-react";
+import { ArrowLeft, ArrowRight, MapPin, Clock, Users } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { galleryImages } from "@/data/galleryData";
@@ -23,7 +23,7 @@ const GalleryDetail = () => {
             to="/gallery"
             className="inline-flex items-center gap-2 text-gray-500 hover:text-black transition-colors mb-8 text-sm font-medium"
           >
-            <ArrowLeft className="w-4 h-4" /> Back to Gallery
+            <ArrowLeft className="w-4 h-4" /> Kembali ke Portofolio
           </Link>
 
           <div className="grid lg:grid-cols-5 gap-10 md:gap-16">
@@ -40,7 +40,7 @@ const GalleryDetail = () => {
                 <h1 className="text-black text-3xl md:text-4xl font-bold tracking-tight mb-2">
                   {image.caption}
                 </h1>
-                <p className="text-amber-600 font-medium">by {image.student}</p>
+                <p className="text-amber-600 font-medium">{image.student}</p>
               </div>
 
               <div className="border-l-4 border-amber-500 pl-5">
@@ -50,14 +50,14 @@ const GalleryDetail = () => {
               <p className="text-gray-700 text-lg leading-relaxed">{image.description}</p>
 
               <div className="bg-gray-50 rounded-xl p-6 space-y-4">
-                <h3 className="text-black font-semibold text-sm tracking-wider uppercase">Technical Details</h3>
+                <h3 className="text-black font-semibold text-sm tracking-wider uppercase">Detail Acara</h3>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center gap-3 text-gray-600">
-                    <Camera className="w-4 h-4 text-amber-500 flex-shrink-0" />
+                    <MapPin className="w-4 h-4 text-amber-500 flex-shrink-0" />
                     <span>{image.camera}</span>
                   </div>
                   <div className="flex items-center gap-3 text-gray-600">
-                    <Aperture className="w-4 h-4 text-amber-500 flex-shrink-0" />
+                    <Users className="w-4 h-4 text-amber-500 flex-shrink-0" />
                     <span>{image.settings}</span>
                   </div>
                   <div className="flex items-center gap-3 text-gray-600">
@@ -77,7 +77,7 @@ const GalleryDetail = () => {
               >
                 <ArrowLeft className="w-5 h-5 text-gray-400 group-hover:text-black transition-colors" />
                 <div>
-                  <p className="text-xs text-gray-400 uppercase tracking-wider">Previous</p>
+                  <p className="text-xs text-gray-400 uppercase tracking-wider">Sebelumnya</p>
                   <p className="text-black font-medium group-hover:text-amber-600 transition-colors">{prev.caption}</p>
                 </div>
               </Link>
@@ -89,7 +89,7 @@ const GalleryDetail = () => {
                 className="flex items-center gap-3 text-right group"
               >
                 <div>
-                  <p className="text-xs text-gray-400 uppercase tracking-wider">Next</p>
+                  <p className="text-xs text-gray-400 uppercase tracking-wider">Selanjutnya</p>
                   <p className="text-black font-medium group-hover:text-amber-600 transition-colors">{next.caption}</p>
                 </div>
                 <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-black transition-colors" />

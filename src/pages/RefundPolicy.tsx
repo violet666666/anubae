@@ -6,79 +6,68 @@ const RefundPolicy = () => (
     <Header />
     <div className="bg-white min-h-screen pt-28 pb-24 px-4 md:px-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-black text-4xl md:text-5xl font-bold tracking-tight mb-8">Refund Policy</h1>
-        <p className="text-gray-500 text-sm mb-12">Last updated: January 15, 2024</p>
+        <h1 className="text-black text-4xl md:text-5xl font-bold tracking-tight mb-8">Kebijakan Pengembalian Dana</h1>
+        <p className="text-gray-500 text-sm mb-12">Terakhir diperbarui: 15 Januari 2024</p>
 
         <div className="space-y-10 text-gray-700 text-lg leading-relaxed">
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">Our Commitment</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">Komitmen Kami</h2>
             <p>
-              At Shutter Theory, we're committed to delivering exceptional photography education. We understand
-              that plans change, and we've designed our refund policy to be fair and transparent for all students.
+              Di Anubae Organizer, kami berkomitmen memberikan layanan event organizer terbaik. Kami memahami
+              bahwa rencana bisa berubah, dan kami merancang kebijakan pengembalian dana yang adil dan transparan.
             </p>
           </section>
 
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">Full Refund (100%)</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">Pengembalian Penuh (100%)</h2>
             <div className="bg-gray-50 p-6 rounded-xl">
-              <p className="font-semibold text-black mb-2">14+ days before course start date</p>
+              <p className="font-semibold text-black mb-2">90+ hari sebelum tanggal acara</p>
               <p>
-                Cancel your enrollment at least 14 days before the course begins and receive a full refund.
-                Refunds are processed within 5–7 business days to your original payment method.
+                Batalkan pemesanan minimal 90 hari sebelum acara dan terima pengembalian dana penuh.
+                Proses pengembalian membutuhkan 7–14 hari kerja ke metode pembayaran asli.
               </p>
             </div>
           </section>
 
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">Partial Refund (50%)</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">Pengembalian Sebagian (50%)</h2>
             <div className="bg-gray-50 p-6 rounded-xl">
-              <p className="font-semibold text-black mb-2">7–13 days before course start date</p>
+              <p className="font-semibold text-black mb-2">30–89 hari sebelum tanggal acara</p>
               <p>
-                Cancellations made between 7 and 13 days before the course start date are eligible for a 50%
-                refund. Alternatively, you may transfer your enrollment to a future session at no additional cost.
+                Pembatalan antara 30 hingga 89 hari sebelum acara berhak atas pengembalian 50%.
+                Alternatifnya, Anda dapat memindahkan pemesanan ke tanggal lain tanpa biaya tambahan.
               </p>
             </div>
           </section>
 
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">No Refund</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">Tanpa Pengembalian</h2>
             <div className="bg-gray-50 p-6 rounded-xl">
-              <p className="font-semibold text-black mb-2">Less than 7 days before course start date</p>
+              <p className="font-semibold text-black mb-2">Kurang dari 30 hari sebelum tanggal acara</p>
               <p>
-                Cancellations within 7 days of the course start date are not eligible for a refund. However,
-                you may transfer your spot to another person or defer to a future session (subject to availability,
-                one deferral per enrollment).
+                Pembatalan dalam 30 hari sebelum acara tidak berhak atas pengembalian dana. Namun,
+                Anda dapat memindahkan ke tanggal lain (tergantung ketersediaan, maksimal 1x pemindahan).
               </p>
             </div>
           </section>
 
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">Course Cancellation by Shutter Theory</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">Pembatalan oleh Anubae Organizer</h2>
             <p>
-              In the rare event that we need to cancel a course due to insufficient enrollment, instructor
-              illness, or severe weather, you will receive a full refund or the option to transfer to an
-              alternative session. We will notify you at least 48 hours in advance whenever possible.
+              Dalam keadaan jarang terjadi di mana kami perlu membatalkan layanan karena force majeure,
+              Anda akan menerima pengembalian dana penuh atau opsi untuk memindahkan ke tanggal lain.
+              Kami akan memberitahu Anda sesegera mungkin.
             </p>
           </section>
 
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">Satisfaction Guarantee</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">Cara Mengajukan Pengembalian</h2>
             <p>
-              If you're not satisfied after the first session of any multi-session course, contact us within
-              24 hours and we'll work with you to find a solution — whether that's switching to a different
-              course level, providing additional support, or issuing a prorated refund for remaining sessions.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">How to Request a Refund</h2>
-            <p>
-              Email us at{" "}
-              <a href="mailto:hello@shuttertheory.com" className="text-amber-600 hover:text-amber-500 underline">
-                hello@shuttertheory.com
+              Kirim email ke{" "}
+              <a href="mailto:hello@anubaeorganizer.com" className="text-amber-600 hover:text-amber-500 underline">
+                hello@anubaeorganizer.com
               </a>{" "}
-              with your enrollment confirmation number and reason for cancellation. We aim to respond to all
-              refund requests within 2 business days.
+              dengan nomor konfirmasi pemesanan dan alasan pembatalan. Kami akan merespons dalam 2 hari kerja.
             </p>
           </section>
         </div>

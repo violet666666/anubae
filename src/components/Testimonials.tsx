@@ -1,12 +1,12 @@
 import FadeInSection from "./FadeInSection";
 
 const testimonials = [
-  { quote: "BEST PHOTOGRAPHY COURSE I'VE TAKEN", author: "Marcus Rivera", context: "Transformed my hobby into a professional career", photo: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" },
-  { quote: "TRANSFORMED MY UNDERSTANDING OF LIGHT", author: "Emma Watson", context: "Sarah's teaching style made complex concepts accessible", photo: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" },
-  { quote: "MOST INSPIRING LEARNING EXPERIENCE", author: "James Park", context: "Finally found my creative voice in photography", photo: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" },
-  { quote: "EXCEEDED ALL MY EXPECTATIONS", author: "Aisha Thompson", context: "The hands-on workshops were incredible", photo: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" },
-  { quote: "A GAME CHANGER FOR MY PORTFOLIO", author: "David Kim", context: "Landed my first paid gig within weeks", photo: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" },
-  { quote: "SARAH IS AN AMAZING MENTOR", author: "Sofia Andersson", context: "Patient, knowledgeable, and truly inspiring", photo: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" },
+  { quote: "ACARA PERNIKAHAN KAMI SEMPURNA", author: "Rina & Budi", context: "Wedding organizer terbaik yang pernah kami gunakan", photo: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" },
+  { quote: "PROFESIONAL DAN SANGAT DETAIL", author: "Dewi Lestari", context: "Acara ulang tahun anak kami berjalan lancar berkat Anubae", photo: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" },
+  { quote: "MELEBIHI EKSPEKTASI KAMI", author: "Hendra Wijaya", context: "Gala dinner perusahaan yang sangat berkesan", photo: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" },
+  { quote: "TIM YANG KREATIF DAN RESPONSIF", author: "Sari Putri", context: "Konsep pesta yang unik dan berbeda dari yang lain", photo: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" },
+  { quote: "PELAYANAN LUAR BIASA", author: "Agus Prasetyo", context: "Seminar kantor kami terorganisir dengan sangat baik", photo: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" },
+  { quote: "SANGAT DIREKOMENDASIKAN", author: "Maya Anggraini", context: "Sudah 3x menggunakan jasa Anubae, selalu puas", photo: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=100&h=100&fit=crop" },
 ];
 
 const TestimonialCard = ({ t }: { t: typeof testimonials[number] }) => (
@@ -36,10 +36,10 @@ const Testimonials = () => (
       <div className="text-center mb-16 px-4">
         <div className="flex items-center justify-center gap-3 mb-4">
           <div className="w-8 h-1 bg-primary rounded-full" />
-          <span className="text-primary text-sm font-semibold tracking-widest uppercase">Testimonials</span>
+          <span className="text-primary text-sm font-semibold tracking-widest uppercase">Testimoni</span>
           <div className="w-8 h-1 bg-primary rounded-full" />
         </div>
-        <h2 className="text-foreground text-4xl md:text-5xl font-bold tracking-tight">What Students Say</h2>
+        <h2 className="text-foreground text-4xl md:text-5xl font-bold tracking-tight">Apa Kata Klien Kami</h2>
       </div>
     </FadeInSection>
 

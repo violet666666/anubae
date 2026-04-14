@@ -6,77 +6,61 @@ const TermsOfService = () => (
     <Header />
     <div className="bg-white min-h-screen pt-28 pb-24 px-4 md:px-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-black text-4xl md:text-5xl font-bold tracking-tight mb-8">Terms of Service</h1>
-        <p className="text-gray-500 text-sm mb-12">Effective: January 15, 2024</p>
+        <h1 className="text-black text-4xl md:text-5xl font-bold tracking-tight mb-8">Syarat & Ketentuan</h1>
+        <p className="text-gray-500 text-sm mb-12">Berlaku sejak: 15 Januari 2024</p>
 
         <div className="space-y-10 text-gray-700 text-lg leading-relaxed">
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">1. Acceptance of Terms</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">1. Penerimaan Syarat</h2>
             <p>
-              By accessing and using the Shutter Theory Photography Academy website and enrolling in our courses,
-              you agree to be bound by these Terms of Service. If you do not agree with any part of these terms,
-              please do not use our services.
+              Dengan mengakses dan menggunakan situs web Anubae Organizer serta memesan layanan kami,
+              Anda setuju untuk terikat dengan Syarat & Ketentuan ini. Jika Anda tidak setuju, mohon untuk
+              tidak menggunakan layanan kami.
             </p>
           </section>
 
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">2. Course Enrollment</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">2. Pemesanan Layanan</h2>
             <p>
-              Enrollment in Shutter Theory courses is subject to availability. Upon successful payment, you will
-              receive a confirmation email with course details, schedule, and access instructions. Course spots
-              are limited to ensure personalized attention — class sizes are capped at 12 students per session.
-            </p>
-            <p className="mt-4">
-              Students must be at least 16 years of age to enroll. Students under 18 require parental or guardian
-              consent and a signed waiver before participating in any outdoor workshops.
+              Pemesanan layanan Anubae Organizer bergantung pada ketersediaan. Setelah pembayaran berhasil,
+              Anda akan menerima konfirmasi melalui email dengan detail layanan dan jadwal. Kami menyarankan
+              untuk melakukan pemesanan minimal 3 bulan sebelum tanggal acara.
             </p>
           </section>
 
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">3. Payment Terms</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">3. Ketentuan Pembayaran</h2>
             <p>
-              All course fees are listed in USD and must be paid in full before the course start date unless
-              a payment plan has been arranged. We accept major credit cards, PayPal, and bank transfers.
-              Payment plans are available for courses exceeding $500, with a 20% deposit required at enrollment.
+              Semua harga tercantum dalam Rupiah (IDR). Pembayaran DP minimal 30% diperlukan untuk konfirmasi
+              pemesanan. Pelunasan dilakukan paling lambat 14 hari sebelum hari-H. Kami menerima transfer bank,
+              kartu kredit, dan pembayaran digital.
             </p>
           </section>
 
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">4. Equipment Requirements</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">4. Perubahan & Penyesuaian</h2>
             <p>
-              Students are expected to bring their own camera equipment unless otherwise stated. Beginner
-              courses accommodate any camera type, including smartphones. Advanced and studio courses require
-              a DSLR or mirrorless camera with manual controls. Loaner equipment is available for a $50/session
-              rental fee — please reserve at least 48 hours in advance.
+              Perubahan minor pada konsep atau detail acara dapat dilakukan hingga 30 hari sebelum hari-H
+              tanpa biaya tambahan. Perubahan besar setelah periode tersebut dapat dikenakan biaya penyesuaian
+              tergantung pada skala perubahan.
             </p>
           </section>
 
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">5. Code of Conduct</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">5. Tanggung Jawab</h2>
             <p>
-              Students are expected to maintain a respectful and supportive learning environment. Harassment,
-              discrimination, or disruptive behavior will not be tolerated and may result in removal from the
-              course without refund. Photography of other students or instructors requires explicit consent.
+              Anubae Organizer bertanggung jawab atas perencanaan dan koordinasi acara sesuai dengan kesepakatan.
+              Kami tidak bertanggung jawab atas kerusakan atau kehilangan barang pribadi selama acara. Force
+              majeure seperti bencana alam atau pandemi akan ditangani sesuai kebijakan khusus.
             </p>
           </section>
 
           <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">6. Intellectual Property</h2>
+            <h2 className="text-black text-2xl font-semibold mb-4">6. Hak Kekayaan Intelektual</h2>
             <p>
-              All course materials, including lesson plans, presentations, handouts, and video recordings, are the
-              intellectual property of Shutter Theory Photography Academy. Students may not reproduce, distribute,
-              or share these materials without written permission. Photographs created by students during courses
-              remain the property of the student.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-black text-2xl font-semibold mb-4">7. Liability</h2>
-            <p>
-              Shutter Theory Photography Academy is not responsible for loss or damage to personal equipment
-              during courses or workshops. Students participate in outdoor workshops and field trips at their
-              own risk. We strongly recommend that all students carry adequate insurance for their photography
-              equipment.
+              Seluruh konsep desain, layout, dan materi kreatif yang dibuat oleh Anubae Organizer adalah
+              hak kekayaan intelektual kami. Klien tidak diperkenankan mendistribusikan atau mereproduksi
+              materi tersebut tanpa izin tertulis.
             </p>
           </section>
         </div>

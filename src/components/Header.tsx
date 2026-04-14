@@ -23,9 +23,9 @@ const ApertureLogo = () => (
 );
 
 const navLinks = [
-  { label: "ABOUT", href: "#about" },
-  { label: "COURSES", href: "#courses" },
-  { label: "GALLERY", href: "#gallery" },
+  { label: "TENTANG KAMI", href: "#tentang" },
+  { label: "LAYANAN", href: "#layanan" },
+  { label: "PORTOFOLIO", href: "#portofolio" },
 ];
 
 const Header = () => {
@@ -40,7 +40,7 @@ const Header = () => {
   return (
     <header className="bg-black/90 backdrop-blur-md fixed w-full z-50 border-b border-white/10">
       <nav className="flex items-center justify-between px-6 md:px-8 py-4 max-w-7xl mx-auto">
-        <a href="#" aria-label="Shutter Theory Home" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+        <a href="#" aria-label="Anubae Organizer Home" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <ApertureLogo />
         </a>
 
@@ -55,7 +55,7 @@ const Header = () => {
             </button>
           ))}
           <button className="bg-amber-500 text-black px-6 py-2.5 rounded-full font-semibold hover:bg-amber-400 transition-all duration-300 hover:scale-105 text-sm">
-            BOOK CONSULTATION
+            KONSULTASI GRATIS
           </button>
         </div>
 
@@ -84,7 +84,7 @@ const Header = () => {
             </button>
           ))}
           <button className="bg-amber-500 text-black px-8 py-3 rounded-full font-semibold text-lg hover:bg-amber-400 transition-all">
-            BOOK CONSULTATION
+            KONSULTASI GRATIS
           </button>
         </div>
       )}
