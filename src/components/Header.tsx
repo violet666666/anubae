@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Menu, X, MessageCircle } from "lucide-react";
 
 const ApertureLogo = () => (
   <svg
     viewBox="0 0 48 48"
-    className="w-12 h-12 text-primary hover:animate-spin-slow transition-transform"
+    className="w-10 h-10 md:w-12 md:h-12 text-primary hover:animate-spin-slow transition-transform"
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
@@ -23,44 +23,104 @@ const ApertureLogo = () => (
 );
 
 const navLinks = [
-  { label: "TENTANG KAMI", href: "#tentang" },
-  { label: "LAYANAN", href: "#layanan" },
-  { label: "PORTOFOLIO", href: "#portofolio" },
+  { label: "Tentang Kami", id: "tentang-kami" },
+  { label: "Wedding", id: "wedding" },
+  { label: "Multimedia", id: "multimedia" },
+  { label: "Videotron", id: "videotron" },
+  { label: "Katalog", id: "katalog-foto" },
 ];
+
+const WHATSAPP_URL = "https://wa.me/6281242401771";
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeId, setActiveId] = useState<string>("");
 
-  const scrollTo = (href: string) => {
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const ids = ["tentang-kami", "wedding", "multimedia", "videotron", "katalog-foto", "katalog-video"];
+    const observers = ids.map((id) => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            // map katalog-video to "katalog" link active state too
+            setActiveId(id === "katalog-video" ? "katalog-foto" : id);
+          }
+        },
+        { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+      );
+      obs.observe(el);
+      return obs;
+    });
+    return () => observers.forEach((o) => o?.disconnect());
+  }, []);
+
+  const scrollTo = (id: string) => {
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const openWhatsApp = () => {
+    setMobileOpen(false);
+    window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer");
   };
 
   return (
-    <header className="bg-background/90 backdrop-blur-md fixed w-full z-50 border-b border-border">
-      <nav className="flex items-center justify-between px-6 md:px-8 py-4 max-w-7xl mx-auto">
-        <a href="#" aria-label="Anubae Organizer Home" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+    <header
+      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-background/85 backdrop-blur-xl border-b border-border"
+          : "bg-transparent border-b border-transparent"
+      }`}
+    >
+      <nav className="flex items-center justify-between px-4 md:px-8 py-3 md:py-4 max-w-7xl mx-auto">
+        <button
+          aria-label="Anubae Organizer Home"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="flex-shrink-0"
+        >
           <ApertureLogo />
-        </a>
+        </button>
 
-        <div className="hidden md:flex items-center gap-10">
-          {navLinks.map((link) => (
-            <button
-              key={link.label}
-              onClick={() => scrollTo(link.href)}
-              className="text-foreground text-sm font-medium tracking-widest hover:text-primary transition-colors duration-300"
-            >
-              {link.label}
-            </button>
-          ))}
-          <button className="bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-semibold hover:bg-primary/90 transition-all duration-300 hover:scale-105 text-sm">
-            KONSULTASI GRATIS
-          </button>
+        <div className="hidden md:flex items-center gap-8 lg:gap-10">
+          {navLinks.map((link) => {
+            const isActive = activeId === link.id;
+            return (
+              <button
+                key={link.id}
+                onClick={() => scrollTo(link.id)}
+                className={`relative text-sm font-medium tracking-wide transition-colors duration-200 ${
+                  isActive ? "text-primary" : "text-foreground hover:text-primary"
+                }`}
+              >
+                {link.label}
+                {isActive && (
+                  <span className="absolute -bottom-1.5 left-0 right-0 mx-auto w-6 h-0.5 bg-primary rounded-full" />
+                )}
+              </button>
+            );
+          })}
         </div>
 
         <button
-          className="md:hidden text-foreground"
+          onClick={openWhatsApp}
+          className="hidden md:inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-5 py-2.5 rounded-lg hover:bg-primary/80 transition-colors duration-200 text-sm"
+        >
+          <MessageCircle className="w-4 h-4" />
+          Konsultasi Sekarang
+        </button>
+
+        <button
+          className="md:hidden text-foreground p-2"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle navigation menu"
           aria-expanded={mobileOpen}
@@ -69,25 +129,36 @@ const Header = () => {
         </button>
       </nav>
 
-      {mobileOpen && (
-        <div className="bg-background/95 fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 md:hidden">
-          <button className="absolute top-5 right-6 text-foreground" onClick={() => setMobileOpen(false)}>
-            <X className="w-6 h-6" />
-          </button>
+      {/* Mobile drawer */}
+      <div
+        className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-in-out ${
+          mobileOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+        style={{ backgroundColor: "#0a0a0a" }}
+      >
+        <div className="flex flex-col">
           {navLinks.map((link) => (
             <button
-              key={link.label}
-              onClick={() => scrollTo(link.href)}
-              className="text-foreground text-2xl font-medium tracking-widest hover:text-primary transition-colors"
+              key={link.id}
+              onClick={() => scrollTo(link.id)}
+              className={`w-full text-left px-6 py-4 text-base font-medium border-b border-border transition-colors duration-200 ${
+                activeId === link.id ? "text-primary" : "text-foreground hover:text-primary"
+              }`}
             >
               {link.label}
             </button>
           ))}
-          <button className="bg-primary text-primary-foreground px-8 py-3 rounded-full font-semibold text-lg hover:bg-primary/90 transition-all">
-            KONSULTASI GRATIS
-          </button>
+          <div className="p-4">
+            <button
+              onClick={openWhatsApp}
+              className="w-full inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-bold px-5 py-3 rounded-lg hover:bg-primary/80 transition-colors duration-200"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Konsultasi Sekarang
+            </button>
+          </div>
         </div>
-      )}
+      </div>
     </header>
   );
 };

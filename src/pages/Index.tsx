@@ -1,7 +1,9 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import Courses from "@/components/Courses";
+import Wedding from "@/components/Wedding";
+import Multimedia from "@/components/Multimedia";
+import Videotron from "@/components/Videotron";
 import KatalogTabs from "@/components/KatalogTabs";
 import KatalogFoto from "@/components/KatalogFoto";
 import KatalogVideo from "@/components/KatalogVideo";
@@ -12,7 +14,9 @@ const Index = () => (
     <Header />
     <Hero />
     <About />
-    <Courses />
+    <Wedding />
+    <Multimedia />
+    <Videotron />
     <KatalogTabs />
     <KatalogFoto />
     <KatalogVideo />
