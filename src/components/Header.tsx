@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 const ApertureLogo = () => (
   <svg
     viewBox="0 0 48 48"
-    className="w-12 h-12 text-amber-500 hover:animate-spin-slow transition-transform"
+    className="w-12 h-12 text-primary hover:animate-spin-slow transition-transform"
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
@@ -38,7 +38,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-black/90 backdrop-blur-md fixed w-full z-50 border-b border-white/10">
+    <header className="bg-background/90 backdrop-blur-md fixed w-full z-50 border-b border-border">
       <nav className="flex items-center justify-between px-6 md:px-8 py-4 max-w-7xl mx-auto">
         <a href="#" aria-label="Anubae Organizer Home" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <ApertureLogo />
@@ -49,18 +49,18 @@ const Header = () => {
             <button
               key={link.label}
               onClick={() => scrollTo(link.href)}
-              className="text-white text-sm font-medium tracking-widest hover:text-amber-400 transition-colors duration-300"
+              className="text-foreground text-sm font-medium tracking-widest hover:text-primary transition-colors duration-300"
             >
               {link.label}
             </button>
           ))}
-          <button className="bg-amber-500 text-black px-6 py-2.5 rounded-full font-semibold hover:bg-amber-400 transition-all duration-300 hover:scale-105 text-sm">
+          <button className="bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-semibold hover:bg-primary/90 transition-all duration-300 hover:scale-105 text-sm">
             KONSULTASI GRATIS
           </button>
         </div>
 
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle navigation menu"
           aria-expanded={mobileOpen}
@@ -70,20 +70,20 @@ const Header = () => {
       </nav>
 
       {mobileOpen && (
-        <div className="bg-black/95 fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 md:hidden">
-          <button className="absolute top-5 right-6 text-white" onClick={() => setMobileOpen(false)}>
+        <div className="bg-background/95 fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 md:hidden">
+          <button className="absolute top-5 right-6 text-foreground" onClick={() => setMobileOpen(false)}>
             <X className="w-6 h-6" />
           </button>
           {navLinks.map((link) => (
             <button
               key={link.label}
               onClick={() => scrollTo(link.href)}
-              className="text-white text-2xl font-medium tracking-widest hover:text-amber-400 transition-colors"
+              className="text-foreground text-2xl font-medium tracking-widest hover:text-primary transition-colors"
             >
               {link.label}
             </button>
           ))}
-          <button className="bg-amber-500 text-black px-8 py-3 rounded-full font-semibold text-lg hover:bg-amber-400 transition-all">
+          <button className="bg-primary text-primary-foreground px-8 py-3 rounded-full font-semibold text-lg hover:bg-primary/90 transition-all">
             KONSULTASI GRATIS
           </button>
         </div>
