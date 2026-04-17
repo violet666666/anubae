@@ -1,7 +1,7 @@
 import FadeInSection from "./FadeInSection";
 
 const About = () => (
-  <section id="tentang" className="bg-muted py-24 px-4 md:px-8">
+  <section id="tentang-kami" className="bg-muted py-24 px-4 md:px-8">
     <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
       <FadeInSection>
         <img
