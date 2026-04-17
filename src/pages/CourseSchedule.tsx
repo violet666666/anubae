@@ -50,29 +50,29 @@ const packages = [
 const CourseSchedule = () => (
   <>
     <Header />
-    <div className="bg-white min-h-screen pt-28 pb-24 px-4 md:px-8">
+    <div className="bg-card min-h-screen pt-28 pb-24 px-4 md:px-8">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-black text-4xl md:text-5xl font-bold tracking-tight mb-4">Paket Layanan</h1>
-        <p className="text-gray-600 text-xl mb-16">Pilih paket yang sesuai dengan kebutuhan acara Anda</p>
+        <h1 className="text-foreground text-4xl md:text-5xl font-bold tracking-tight mb-4">Paket Layanan</h1>
+        <p className="text-muted-foreground text-xl mb-16">Pilih paket yang sesuai dengan kebutuhan acara Anda</p>
 
         <div className="space-y-8">
           {packages.map((pkg) => (
-            <div key={pkg.title} className="bg-gray-50 rounded-2xl p-6 md:p-8 hover:shadow-lg transition-shadow">
+            <div key={pkg.title} className="bg-muted rounded-2xl p-6 md:p-8 border border-border hover:border-primary/40 transition-colors">
               <div className="flex flex-col md:flex-row md:items-start gap-6">
                 <div className="flex-shrink-0">
-                  <div className="w-14 h-14 bg-amber-500/10 rounded-xl flex items-center justify-center">
-                    <pkg.icon className="w-7 h-7 text-amber-600" />
+                  <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center">
+                    <pkg.icon className="w-7 h-7 text-primary" />
                   </div>
                 </div>
                 <div className="flex-1">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
-                    <h2 className="text-black text-xl font-semibold">{pkg.title}</h2>
-                    <span className="text-amber-600 text-2xl font-bold">{pkg.price}</span>
+                    <h2 className="text-foreground text-xl font-semibold">{pkg.title}</h2>
+                    <span className="text-primary text-2xl font-bold">{pkg.price}</span>
                   </div>
-                  <p className="text-gray-600 mb-4">{pkg.description}</p>
+                  <p className="text-muted-foreground mb-4">{pkg.description}</p>
                   <div className="flex flex-wrap gap-3">
                     {pkg.includes.map((item) => (
-                      <span key={item} className="bg-white px-3 py-1.5 rounded-full text-gray-700 border border-gray-200 text-sm">
+                      <span key={item} className="bg-background px-3 py-1.5 rounded-full text-foreground/80 border border-border text-sm">
                         ✓ {item}
                       </span>
                     ))}
@@ -83,13 +83,13 @@ const CourseSchedule = () => (
           ))}
         </div>
 
-        <div className="mt-24 bg-black rounded-2xl p-8 md:p-12 text-center">
-          <h2 className="text-white text-3xl font-bold mb-4">Siap mewujudkan acara impian Anda?</h2>
-          <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+        <div className="mt-24 bg-background rounded-2xl p-8 md:p-12 text-center border border-border">
+          <h2 className="text-foreground text-3xl font-bold mb-4">Siap mewujudkan acara impian Anda?</h2>
+          <p className="text-muted-foreground text-lg mb-8 max-w-2xl mx-auto">
             Konsultasikan kebutuhan acara Anda secara gratis. Tim kami siap membantu merencanakan
             momen spesial yang tak terlupakan untuk Anda.
           </p>
-          <button className="bg-amber-500 text-black px-8 py-3 rounded-full font-semibold hover:bg-amber-400 transition-all duration-300 hover:scale-105 text-lg">
+          <button className="bg-primary text-primary-foreground px-8 py-3 rounded-full font-semibold hover:bg-primary/90 transition-all duration-300 hover:scale-105 text-lg">
             KONSULTASI GRATIS
           </button>
         </div>

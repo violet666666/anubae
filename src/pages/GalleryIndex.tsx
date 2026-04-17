@@ -6,10 +6,10 @@ import { galleryImages } from "@/data/galleryData";
 const GalleryIndex = () => (
   <>
     <Header />
-    <div className="bg-white min-h-screen pt-28 pb-24 px-4 md:px-8">
+    <div className="bg-card min-h-screen pt-28 pb-24 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-black text-4xl md:text-5xl font-bold tracking-tight mb-4">Portofolio Acara</h1>
-        <p className="text-gray-600 text-xl mb-16">
+        <h1 className="text-foreground text-4xl md:text-5xl font-bold tracking-tight mb-4">Portofolio Acara</h1>
+        <p className="text-muted-foreground text-xl mb-16">
           Dokumentasi acara-acara yang telah kami tangani — bukti dedikasi kami dalam mewujudkan momen spesial.
         </p>
 
@@ -24,12 +24,12 @@ const GalleryIndex = () => (
                 src={img.src}
                 alt={img.alt}
                 loading="lazy"
-                className="w-full rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300"
+                className="w-full rounded-xl"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 rounded-xl transition-all flex items-end">
+              <div className="absolute inset-0 bg-background/0 group-hover:bg-background/40 rounded-xl transition-all flex items-end">
                 <div className="p-5 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <p className="text-white font-semibold text-lg">{img.caption}</p>
-                  <p className="text-white/70 text-sm mt-1">{img.student}</p>
+                  <p className="text-foreground font-semibold text-lg">{img.caption}</p>
+                  <p className="text-foreground/70 text-sm mt-1">{img.student}</p>
                 </div>
               </div>
             </Link>
