@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ApertureLogo = () => (
   <svg
@@ -36,6 +37,17 @@ const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState<string>("");
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleLogoClick = () => {
+    setMobileOpen(false);
+    setActiveId("");
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -85,7 +97,7 @@ const Header = () => {
       <nav className="flex items-center justify-between px-4 md:px-8 py-3 md:py-4 max-w-7xl mx-auto">
         <button
           aria-label="Anubae Organizer Home"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          onClick={handleLogoClick}
           className="flex-shrink-0"
         >
           <ApertureLogo />
