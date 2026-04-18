@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ApertureLogo = () => (
   <svg
