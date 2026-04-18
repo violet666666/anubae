@@ -7,12 +7,19 @@ const FadeInSection = ({ children, className = "", delay = 0 }: { children: Reac
     const el = ref.current;
     if (!el) return;
 
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      el.classList.remove("opacity-0", "translate-y-10");
+      el.classList.add("opacity-100", "translate-y-0");
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setTimeout(() => {
             el.classList.add("opacity-100", "translate-y-0");
-            el.classList.remove("opacity-0", "translate-y-8");
+            el.classList.remove("opacity-0", "translate-y-10");
           }, delay);
           observer.unobserve(el);
         }
@@ -27,7 +34,7 @@ const FadeInSection = ({ children, className = "", delay = 0 }: { children: Reac
   return (
     <div
       ref={ref}
-      className={`opacity-0 translate-y-8 transition-all duration-700 ease-out ${className}`}
+      className={`opacity-0 translate-y-10 transition-all duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${className}`}
     >
       {children}
     </div>
