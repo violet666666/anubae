@@ -1,5 +1,40 @@
-import { Monitor, Maximize, Zap, Settings } from "lucide-react";
+import { Monitor, Maximize, Zap, Settings, Check, MapPin, Truck } from "lucide-react";
 import FadeInSection from "./FadeInSection";
+
+type LocationPackage = {
+  icon: typeof MapPin;
+  title: string;
+  price: string;
+  description: string;
+  features: string[];
+  whatsappText: string;
+};
+
+const locationPackages: LocationPackage[] = [
+  {
+    icon: MapPin,
+    title: "Dalam Kota Makassar",
+    price: "Rp 500.000",
+    description: "Meliputi seluruh wilayah dalam Kota Makassar dan sekitarnya",
+    features: ["Termasuk Operator", "Instalasi & Uninstalasi", "Konten Setup Awal"],
+    whatsappText: "Halo,%20saya%20ingin%20sewa%20Videotron%20dalam%20kota%20Makassar",
+  },
+  {
+    icon: Truck,
+    title: "Luar Kota Makassar",
+    price: "Rp 700.000",
+    description: "Meliputi kota-kota lain di luar Makassar, Sulawesi Selatan dan sekitarnya",
+    features: [
+      "Termasuk Operator",
+      "Instalasi & Uninstalasi",
+      "Konten Setup Awal",
+      "Biaya Transport Termasuk",
+    ],
+    whatsappText: "Halo,%20saya%20ingin%20sewa%20Videotron%20luar%20kota%20Makassar",
+  },
+];
+
+const WHATSAPP_BASE = "https://wa.me/6281242401771?text=";
 
 const specs = [
   { icon: Monitor, title: "LED Indoor & Outdoor", desc: "Tersedia berbagai ukuran pixel pitch P3, P4, P5 untuk kebutuhan indoor maupun outdoor" },
