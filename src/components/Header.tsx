@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const ApertureLogo = () => (
   <img
-    src="/anubae-logo.png"
+    src="/anubae-logo2.png"
     alt="Anubae Organizer"
     width="140"
     height="40"
