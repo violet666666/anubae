@@ -38,24 +38,49 @@ const Footer = () => (
           >
             <Instagram className="w-4 h-4 text-foreground" />
           </a>
-          {[Youtube, Facebook].map((Icon, i) => (
-            <a
-              key={i}
-              href="#"
-              className="w-10 h-10 bg-foreground/10 rounded-full flex items-center justify-center hover:bg-primary transition-all duration-300"
-              aria-label={["YouTube", "Facebook"][i]}
-            >
-              <Icon className="w-4 h-4 text-foreground" />
-            </a>
-          ))}
+          <a
+            href="https://www.youtube.com/@Anubaeorganizer/videos"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-10 h-10 bg-foreground/10 rounded-full flex items-center justify-center hover:bg-primary transition-all duration-300"
+            aria-label="YouTube"
+          >
+            <Youtube className="w-4 h-4 text-foreground" />
+          </a>
+          <a
+            href="#"
+            className="w-10 h-10 bg-foreground/10 rounded-full flex items-center justify-center hover:bg-primary transition-all duration-300"
+            aria-label="Facebook"
+          >
+            <Facebook className="w-4 h-4 text-foreground" />
+          </a>
         </div>
       </div>
 
       <div>
         <h3 className="text-foreground text-sm font-semibold tracking-widest mb-6">KONTAK</h3>
-        <p className="text-foreground/50 text-sm mb-2">hello@anubaeorganizer.com</p>
-        <p className="text-foreground/50 text-sm mb-2">+62 812-3456-7890</p>
-        <p className="text-foreground/50 text-sm">Jl. Kreasi No. 45, Jakarta Selatan 12345</p>
+        <a
+          href="tel:+6281242401771"
+          className="text-foreground/50 text-sm hover:text-primary transition-colors block mb-2"
+        >
+          +62 812-4240-1771
+        </a>
+        <a
+          href="https://wa.me/6281242401771"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-foreground/50 text-sm hover:text-primary transition-colors block mb-2"
+        >
+          WhatsApp
+        </a>
+        <a
+          href="https://maps.app.goo.gl/7yRLUaKsPGzbwHvy8"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-foreground/50 text-sm hover:text-primary transition-colors block"
+        >
+          Makassar, Sulawesi Selatan
+        </a>
       </div>
 
       <div>
@@ -80,7 +105,7 @@ const Footer = () => (
     </div>
 
     <div className="border-t border-foreground/10 mt-12 pt-8 text-center text-foreground/40 text-sm max-w-7xl mx-auto">
-      © 2024–{new Date().getFullYear()} Anubae Organizer. Seluruh hak cipta dilindungi.
+      © 2024–2026 Anubae Organizer. All rights reserved.
     </div>
   </footer>
 );
