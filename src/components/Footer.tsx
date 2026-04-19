@@ -1,4 +1,4 @@
-import { Instagram, Youtube, Facebook } from "lucide-react";
+import { Instagram, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const quickLinks = [
@@ -47,13 +47,6 @@ const Footer = () => (
           >
             <Youtube className="w-4 h-4 text-foreground" />
           </a>
-          <a
-            href="#"
-            className="w-10 h-10 bg-foreground/10 rounded-full flex items-center justify-center hover:bg-primary transition-all duration-300"
-            aria-label="Facebook"
-          >
-            <Facebook className="w-4 h-4 text-foreground" />
-          </a>
         </div>
       </div>
 
@@ -99,8 +92,7 @@ const Footer = () => (
       <div>
         <h3 className="text-foreground text-sm font-semibold tracking-widest mb-6">SOSIAL MEDIA</h3>
         <a href="https://www.instagram.com/anubae.organizer" target="_blank" rel="noopener noreferrer" className="text-foreground/50 text-sm hover:text-primary transition-colors block mb-3">@anubae.organizer</a>
-        <a href="#" className="text-foreground/50 text-sm hover:text-primary transition-colors block mb-3">Anubae Organizer di YouTube</a>
-        <a href="#" className="text-foreground/50 text-sm hover:text-primary transition-colors block mb-3">Galeri Pinterest</a>
+        <a href="https://www.youtube.com/@Anubaeorganizer/videos" target="_blank" rel="noopener noreferrer" className="text-foreground/50 text-sm hover:text-primary transition-colors block mb-3">@AnubaeOrganizer</a>
       </div>
     </div>
 
