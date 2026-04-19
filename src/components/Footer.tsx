@@ -10,7 +10,7 @@ const quickLinks = [
 
 const ApertureLogo = () => (
   <img
-    src="/anubae-logo.png"
+    src="/anubae-logo2.png"
     alt="Anubae Organizer"
     width="160"
     height="44"
