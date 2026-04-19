@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
-import StatsCounter from "@/components/StatsCounter";
+
 import Wedding from "@/components/Wedding";
 import Multimedia from "@/components/Multimedia";
 import Videotron from "@/components/Videotron";
@@ -15,7 +15,7 @@ const Index = () => (
     <Header />
     <Hero />
     <About />
-    <StatsCounter />
+    
     <Wedding />
     <Multimedia />
     <Videotron />
