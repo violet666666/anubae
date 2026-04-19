@@ -3,24 +3,14 @@ import { Menu, X, MessageCircle } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const ApertureLogo = () => (
-  <svg
-    viewBox="0 0 48 48"
-    className="w-10 h-10 md:w-12 md:h-12 text-primary hover:animate-spin-slow transition-transform"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-  >
-    <circle cx="24" cy="24" r="20" />
-    <circle cx="24" cy="24" r="8" />
-    <line x1="24" y1="4" x2="24" y2="16" />
-    <line x1="24" y1="32" x2="24" y2="44" />
-    <line x1="4" y1="24" x2="16" y2="24" />
-    <line x1="32" y1="24" x2="44" y2="24" />
-    <line x1="9.86" y1="9.86" x2="18.34" y2="18.34" />
-    <line x1="29.66" y1="29.66" x2="38.14" y2="38.14" />
-    <line x1="38.14" y1="9.86" x2="29.66" y2="18.34" />
-    <line x1="18.34" y1="29.66" x2="9.86" y2="38.14" />
-  </svg>
+  <img
+    src="/anubae-logo.png"
+    alt="Anubae Organizer"
+    width="140"
+    height="40"
+    loading="eager"
+    className="h-10 w-auto object-contain"
+  />
 );
 
 const navLinks = [

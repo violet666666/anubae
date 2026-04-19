@@ -9,14 +9,14 @@ const quickLinks = [
 ];
 
 const ApertureLogo = () => (
-  <svg viewBox="0 0 48 48" className="w-10 h-10 text-primary" fill="none" stroke="currentColor" strokeWidth="2">
-    <circle cx="24" cy="24" r="20" />
-    <circle cx="24" cy="24" r="8" />
-    <line x1="24" y1="4" x2="24" y2="16" />
-    <line x1="24" y1="32" x2="24" y2="44" />
-    <line x1="4" y1="24" x2="16" y2="24" />
-    <line x1="32" y1="24" x2="44" y2="24" />
-  </svg>
+  <img
+    src="/anubae-logo.png"
+    alt="Anubae Organizer"
+    width="160"
+    height="44"
+    loading="lazy"
+    className="h-11 w-auto object-contain opacity-90"
+  />
 );
 
 const Footer = () => (
