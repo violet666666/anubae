@@ -6,10 +6,10 @@ const ApertureLogo = () => (
   <img
     src="/anubae-logo2.png"
     alt="Anubae Organizer"
-    width="140"
+    width="280"
     height="40"
     loading="eager"
-    className="h-10 w-auto object-contain"
+    className="h-20 w-auto object-contain"
   />
 );
 
