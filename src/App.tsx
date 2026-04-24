@@ -1,7 +1,9 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import ScrollToTop from "./components/ScrollToTop.tsx";
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
+import { AuthProvider } from "./contexts/AuthContext.tsx";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,6 +15,8 @@ import RefundPolicy from "./pages/RefundPolicy.tsx";
 import CourseSchedule from "./pages/CourseSchedule.tsx";
 import GalleryIndex from "./pages/GalleryIndex.tsx";
 import GalleryDetail from "./pages/GalleryDetail.tsx";
+import AdminLogin from "./pages/admin/AdminLogin.tsx";
+import AdminPanel from "./pages/admin/AdminPanel.tsx";
 
 const queryClient = new QueryClient();
 
@@ -66,25 +70,37 @@ const FloatingWhatsApp = () => {
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/terms-of-service" element={<TermsOfService />} />
-          <Route path="/refund-policy" element={<RefundPolicy />} />
-          <Route path="/paket-layanan" element={<CourseSchedule />} />
-          <Route path="/course-schedule" element={<CourseSchedule />} />
-          <Route path="/gallery" element={<GalleryIndex />} />
-          <Route path="/gallery/:id" element={<GalleryDetail />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <FloatingWhatsApp />
-      </BrowserRouter>
-    </TooltipProvider>
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/refund-policy" element={<RefundPolicy />} />
+            <Route path="/paket-layanan" element={<CourseSchedule />} />
+            <Route path="/course-schedule" element={<CourseSchedule />} />
+            <Route path="/gallery" element={<GalleryIndex />} />
+            <Route path="/gallery/:id" element={<GalleryDetail />} />
+            <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route
+              path="/admin/panel"
+              element={
+                <ProtectedRoute>
+                  <AdminPanel />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <FloatingWhatsApp />
+        </BrowserRouter>
+      </TooltipProvider>
+    </AuthProvider>
   </QueryClientProvider>
 );
 
