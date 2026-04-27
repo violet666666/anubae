@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Heart, Building, PartyPopper, Crown, Gem, Star } from "lucide-react";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const packages = [
   {
