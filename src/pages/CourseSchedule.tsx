@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Heart, Building, PartyPopper, Crown, Gem, Star } from "lucide-react";
 import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useWATemplates } from "@/hooks/useWATemplates";
 
 const packages = [
   {
@@ -49,9 +50,10 @@ const packages = [
 ];
 
 const CourseSchedule = () => {
-  const { getWALink } = useSiteSettings();
+  const { settings } = useSiteSettings();
+  const templates = useWATemplates();
   const handleConsult = () => {
-    const url = getWALink("Halo Anubae Organizer, saya ingin konsultasi gratis untuk acara saya.");
+    const url = `https://wa.me/${settings.whatsapp_number}?text=${encodeURIComponent(templates.konsultasi ?? "")}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
