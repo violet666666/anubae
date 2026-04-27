@@ -73,7 +73,8 @@ const Header = () => {
 
   const openWhatsApp = () => {
     setMobileOpen(false);
-    window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer");
+    const url = getWALink("Halo Anubae Organizer, saya ingin konsultasi gratis untuk acara saya.");
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
