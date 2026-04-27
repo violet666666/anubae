@@ -22,14 +22,13 @@ const navLinks = [
   { label: "Katalog", id: "katalog-foto" },
 ];
 
-const WHATSAPP_URL = "https://wa.me/6281242401771";
-
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState<string>("");
   const navigate = useNavigate();
   const location = useLocation();
+  const { getWALink } = useSiteSettings();
 
   const handleLogoClick = () => {
     setMobileOpen(false);
