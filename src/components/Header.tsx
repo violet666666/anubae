@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X, MessageCircle } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const ApertureLogo = () => (
   <img
@@ -21,14 +22,13 @@ const navLinks = [
   { label: "Katalog", id: "katalog-foto" },
 ];
 
-const WHATSAPP_URL = "https://wa.me/6281242401771";
-
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState<string>("");
   const navigate = useNavigate();
   const location = useLocation();
+  const { getWALink } = useSiteSettings();
 
   const handleLogoClick = () => {
     setMobileOpen(false);
@@ -73,7 +73,8 @@ const Header = () => {
 
   const openWhatsApp = () => {
     setMobileOpen(false);
-    window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer");
+    const url = getWALink("Halo Anubae Organizer, saya ingin konsultasi gratis untuk acara saya.");
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (

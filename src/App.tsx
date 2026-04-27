@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
+import { useSiteSettings } from "./hooks/useSiteSettings";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -21,8 +22,9 @@ import AdminPanel from "./pages/admin/AdminPanel.tsx";
 const queryClient = new QueryClient();
 
 const FloatingWhatsApp = () => {
+  const { settings } = useSiteSettings();
   const handleClick = () => {
-    window.open("https://wa.me/6281242401771", "_blank", "noopener,noreferrer");
+    window.open(`https://wa.me/${settings.whatsapp_number}`, "_blank", "noopener,noreferrer");
   };
 
   return (
