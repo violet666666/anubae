@@ -7,6 +7,7 @@ import {
   Play,
   LogOut,
   MessageSquare,
+  MessageCircle,
 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
@@ -117,9 +118,9 @@ const primaryBtn: React.CSSProperties = {
 const AdminPanel = () => {
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
-  const [activeTab, setActiveTab] = useState<'media' | 'settings' | 'messages'>(
-    'media',
-  );
+  const [activeTab, setActiveTab] = useState<
+    'media' | 'settings' | 'messages' | 'templates'
+  >('media');
 
   const handleLogout = async () => {
     await signOut();
@@ -212,6 +213,7 @@ const AdminPanel = () => {
           {[
             { id: 'media' as const, label: '📸 Katalog Media' },
             { id: 'settings' as const, label: '⚙️ Pengaturan' },
+            { id: 'templates' as const, label: '💬 Template Pesan' },
             {
               id: 'messages' as const,
               label: `📬 Pesan Masuk${submissionsCount ? ` (${submissionsCount})` : ''}`,
@@ -241,6 +243,7 @@ const AdminPanel = () => {
       <main className="max-w-[1200px] mx-auto px-6 py-8">
         {activeTab === 'media' && <MediaTab />}
         {activeTab === 'settings' && <SettingsTab />}
+        {activeTab === 'templates' && <TemplatesTab />}
         {activeTab === 'messages' && (
           <MessagesTab submissions={submissions} reload={loadSubmissions} />
         )}
