@@ -22,8 +22,9 @@ import AdminPanel from "./pages/admin/AdminPanel.tsx";
 const queryClient = new QueryClient();
 
 const FloatingWhatsApp = () => {
+  const { settings } = useSiteSettings();
   const handleClick = () => {
-    window.open("https://wa.me/6281242401771", "_blank", "noopener,noreferrer");
+    window.open(`https://wa.me/${settings.whatsapp_number}`, "_blank", "noopener,noreferrer");
   };
 
   return (
