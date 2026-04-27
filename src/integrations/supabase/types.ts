@@ -101,6 +101,27 @@ export type Database = {
         }
         Relationships: []
       }
+      wa_templates: {
+        Row: {
+          id: string
+          label: string
+          template: string
+          updated_at: string
+        }
+        Insert: {
+          id: string
+          label: string
+          template: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          label?: string
+          template?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
