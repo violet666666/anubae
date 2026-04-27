@@ -1,12 +1,14 @@
 import { Check } from "lucide-react";
 import FadeInSection from "./FadeInSection";
+import { useWATemplates } from "@/hooks/useWATemplates";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 type Package = {
   name: string;
   price: string;
   features: string[];
   featured?: boolean;
-  whatsappText: string;
+  templateKey: string;
 };
 
 const packages: Package[] = [
