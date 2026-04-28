@@ -16,6 +16,11 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     return <Navigate to="/admin/login" replace />;
   }
 
+  const role = user.user_metadata?.role;
+  if (role !== 'admin') {
+    return <Navigate to="/admin/login" replace />;
+  }
+
   return <>{children}</>;
 };
 

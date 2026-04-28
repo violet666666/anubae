@@ -1,9 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { useEffect } from "react";
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import ScrollToTop from "./components/ScrollToTop.tsx";
-import { createAdminUser } from "./utils/createAdminUser";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
 import { useSiteSettings } from "./hooks/useSiteSettings";
@@ -25,9 +23,13 @@ const queryClient = new QueryClient();
 
 const FloatingWhatsApp = () => {
   const { settings } = useSiteSettings();
+  const location = useLocation();
+  const isAdminPage = location.pathname.startsWith('/admin');
   const handleClick = () => {
     window.open(`https://wa.me/${settings.whatsapp_number}`, "_blank", "noopener,noreferrer");
   };
+
+  if (isAdminPage) return null;
 
   return (
     <div
@@ -73,10 +75,6 @@ const FloatingWhatsApp = () => {
 };
 
 const App = () => {
-  useEffect(() => {
-    createAdminUser();
-  }, []);
-
   return (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>

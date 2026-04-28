@@ -8,6 +8,9 @@ import {
   LogOut,
   MessageSquare,
   MessageCircle,
+  Check,
+  Mail,
+  MailOpen,
 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
@@ -129,6 +132,7 @@ const AdminPanel = () => {
 
   // ----- Submissions count for tab badge -----
   const [submissions, setSubmissions] = useState<ContactSubmission[]>([]);
+  const unreadCount = submissions.filter((s) => !s.is_read).length;
   const submissionsCount = submissions.length;
 
   const loadSubmissions = async () => {
@@ -216,7 +220,7 @@ const AdminPanel = () => {
             { id: 'templates' as const, label: '💬 Template Pesan' },
             {
               id: 'messages' as const,
-              label: `📬 Pesan Masuk${submissionsCount ? ` (${submissionsCount})` : ''}`,
+              label: `📬 Pesan Masuk${unreadCount ? ` (${unreadCount} baru)` : submissionsCount ? ` (${submissionsCount})` : ''}`,
             },
           ].map((t) => {
             const active = activeTab === t.id;
@@ -498,27 +502,61 @@ const MediaTab = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
           <div>
             <label style={labelStyle}>Kategori</label>
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value as Category)}
-              style={{ ...inputStyle, appearance: 'none' }}
-            >
-              <option value="wedding">Wedding</option>
-              <option value="multimedia">Multimedia</option>
-              <option value="videotron">Videotron</option>
-              <option value="lainnya">Lainnya</option>
-            </select>
+            <div style={{ position: 'relative' }}>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value as Category)}
+                style={{
+                  ...inputStyle,
+                  appearance: 'none',
+                  paddingRight: '36px',
+                  backgroundColor: '#1a1a1a',
+                  color: '#ffffff',
+                }}
+              >
+                <option value="wedding" style={{ backgroundColor: '#1a1a1a' }}>Wedding</option>
+                <option value="multimedia" style={{ backgroundColor: '#1a1a1a' }}>Multimedia</option>
+                <option value="videotron" style={{ backgroundColor: '#1a1a1a' }}>Videotron</option>
+                <option value="lainnya" style={{ backgroundColor: '#1a1a1a' }}>Lainnya</option>
+              </select>
+              <svg
+                style={{
+                  position: 'absolute', right: '12px', top: '50%',
+                  transform: 'translateY(-50%)', pointerEvents: 'none',
+                }}
+                width="12" height="8" viewBox="0 0 12 8"
+              >
+                <path d="M1 1l5 5 5-5" stroke="#999" strokeWidth="1.5" fill="none" />
+              </svg>
+            </div>
           </div>
           <div>
             <label style={labelStyle}>Tipe</label>
-            <select
-              value={mediaType}
-              onChange={(e) => setMediaType(e.target.value as MediaType)}
-              style={{ ...inputStyle, appearance: 'none' }}
-            >
-              <option value="image">Foto</option>
-              <option value="video">Video</option>
-            </select>
+            <div style={{ position: 'relative' }}>
+              <select
+                value={mediaType}
+                onChange={(e) => setMediaType(e.target.value as MediaType)}
+                style={{
+                  ...inputStyle,
+                  appearance: 'none',
+                  paddingRight: '36px',
+                  backgroundColor: '#1a1a1a',
+                  color: '#ffffff',
+                }}
+              >
+                <option value="image" style={{ backgroundColor: '#1a1a1a' }}>Foto</option>
+                <option value="video" style={{ backgroundColor: '#1a1a1a' }}>Video</option>
+              </select>
+              <svg
+                style={{
+                  position: 'absolute', right: '12px', top: '50%',
+                  transform: 'translateY(-50%)', pointerEvents: 'none',
+                }}
+                width="12" height="8" viewBox="0 0 12 8"
+              >
+                <path d="M1 1l5 5 5-5" stroke="#999" strokeWidth="1.5" fill="none" />
+              </svg>
+            </div>
           </div>
         </div>
 
@@ -834,10 +872,26 @@ const MessagesTab = ({
   submissions: ContactSubmission[];
   reload: () => Promise<void>;
 }) => {
+  const [readLoading, setReadLoading] = useState<string | null>(null);
+
   useEffect(() => {
     reload();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const toggleRead = async (id: string, currentRead: boolean) => {
+    setReadLoading(id);
+    const { error } = await supabase
+      .from('contact_submissions')
+      .update({ is_read: !currentRead })
+      .eq('id', id);
+    setReadLoading(null);
+    if (error) {
+      toast({ title: 'Gagal update status', description: error.message, variant: 'destructive' });
+      return;
+    }
+    await reload();
+  };
 
   if (submissions.length === 0) {
     return (
@@ -855,10 +909,23 @@ const MessagesTab = ({
         const phoneClean = s.phone.replace(/[^0-9]/g, '');
         const waUrl = `https://wa.me/${phoneClean}?text=${encodeURIComponent(`Halo ${s.name}, terima kasih telah menghubungi Anubae Organizer.`)}`;
         return (
-          <article key={s.id} style={{ ...cardStyle, padding: '20px' }}>
+          <article
+            key={s.id}
+            style={{
+              ...cardStyle,
+              padding: '20px',
+              borderLeft: s.is_read ? 'none' : '3px solid #80f0ff',
+              opacity: s.is_read ? 0.7 : 1,
+            }}
+          >
             <div className="flex items-start justify-between gap-4 flex-wrap">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-3 flex-wrap">
+                  {s.is_read ? (
+                    <MailOpen size={16} color="#666" />
+                  ) : (
+                    <Mail size={16} color="#80f0ff" />
+                  )}
                   <h3 className="text-white font-bold">{s.name}</h3>
                   {s.service && (
                     <span
@@ -882,14 +949,31 @@ const MessagesTab = ({
               </div>
 
               <div className="flex flex-col items-end gap-3">
-                <a
-                  href={waUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={primaryBtn}
-                >
-                  Balas WA
-                </a>
+                <div className="flex gap-2">
+                  <a
+                    href={waUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={primaryBtn}
+                  >
+                    Balas WA
+                  </a>
+                  <button
+                    onClick={() => toggleRead(s.id, s.is_read)}
+                    disabled={readLoading === s.id}
+                    className="px-3 py-2 rounded-lg text-xs flex items-center gap-1.5 transition-colors"
+                    style={{
+                      border: `1px solid ${s.is_read ? '#444' : 'rgba(128,240,255,0.3)'}`,
+                      color: s.is_read ? '#666' : '#80f0ff',
+                      background: 'transparent',
+                      cursor: readLoading === s.id ? 'not-allowed' : 'pointer',
+                    }}
+                    title={s.is_read ? 'Tandai belum dibaca' : 'Tandai sudah dibaca'}
+                  >
+                    <Check size={14} />
+                    {s.is_read ? 'Baca' : 'Baru'}
+                  </button>
+                </div>
                 <span className="text-xs" style={{ color: '#555' }}>
                   {formatDate(s.created_at)}
                 </span>
