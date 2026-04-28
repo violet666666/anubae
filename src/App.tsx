@@ -72,7 +72,12 @@ const FloatingWhatsApp = () => {
   );
 };
 
-const App = () => (
+const App = () => {
+  useEffect(() => {
+    createAdminUser();
+  }, []);
+
+  return (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
       <TooltipProvider>
