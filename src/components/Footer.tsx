@@ -113,7 +113,7 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-foreground/10 mt-12 pt-8 text-center text-foreground/40 text-sm max-w-7xl mx-auto">
-        © 2024–2026 Anubae Organizer. All rights reserved.
+        © 2024–{new Date().getFullYear()} Anubae Organizer. All rights reserved.
       </div>
     </footer>
   );

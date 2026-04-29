@@ -1,7 +1,22 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const PrivacyPolicy = () => (
+import { useSiteSettings } from "@/hooks/useSiteSettings";
+
+const formatPhoneDisplay = (raw: string) => {
+  const digits = raw.replace(/\D/g, "");
+  const local = digits.startsWith("62") ? digits.slice(2) : digits.replace(/^0/, "");
+  const part1 = local.slice(0, 3);
+  const part2 = local.slice(3, 7);
+  const part3 = local.slice(7);
+  return `+62 ${[part1, part2, part3].filter(Boolean).join("-")}`;
+};
+
+const PrivacyPolicy = () => {
+  const { settings } = useSiteSettings();
+  const phoneDisplay = formatPhoneDisplay(settings.whatsapp_number);
+
+  return (
   <>
     <Header />
     <div className="bg-card min-h-screen pt-28 pb-24 px-4 md:px-8">
@@ -68,7 +83,7 @@ const PrivacyPolicy = () => (
               <a href="mailto:hello@anubaeorganizer.com" className="text-primary hover:text-primary/80 underline">
                 hello@anubaeorganizer.com
               </a>{" "}
-              atau hubungi +62 812-3456-7890.
+              atau hubungi {phoneDisplay}.
             </p>
           </section>
         </div>
@@ -76,6 +91,7 @@ const PrivacyPolicy = () => (
     </div>
     <Footer />
   </>
-);
+  );
+};
 
 export default PrivacyPolicy;

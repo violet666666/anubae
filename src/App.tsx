@@ -89,7 +89,6 @@ const App = () => {
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/refund-policy" element={<RefundPolicy />} />
             <Route path="/paket-layanan" element={<CourseSchedule />} />
-            <Route path="/course-schedule" element={<CourseSchedule />} />
             <Route path="/gallery" element={<GalleryIndex />} />
             <Route path="/gallery/:id" element={<GalleryDetail />} />
             <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
