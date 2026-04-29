@@ -1,6 +1,6 @@
 import { Instagram, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 
 const quickLinks = [
   { label: "Kebijakan Privasi", to: "/privacy-policy" },

@@ -1,5 +1,5 @@
 import FadeInSection from "./FadeInSection";
-import { useGalleryMedia } from "@/hooks/useGalleryMedia";
+import { useGalleryMedia } from "@/contexts/GalleryMediaContext";
 
 const KatalogVideo = () => {
   const { videos, loading } = useGalleryMedia();

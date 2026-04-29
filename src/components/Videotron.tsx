@@ -1,7 +1,7 @@
 import { Check, MapPin, Truck } from "lucide-react";
 import FadeInSection from "./FadeInSection";
 import { useWATemplates } from "@/hooks/useWATemplates";
-import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 
 type LocationPackage = {
   icon: typeof MapPin;

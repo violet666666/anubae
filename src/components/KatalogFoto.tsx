@@ -1,5 +1,5 @@
 import FadeInSection from "./FadeInSection";
-import { useGalleryMedia } from "@/hooks/useGalleryMedia";
+import { useGalleryMedia } from "@/contexts/GalleryMediaContext";
 
 const KatalogFoto = () => {
   const { images, loading } = useGalleryMedia();

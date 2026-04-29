@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-import { useSiteSettings } from "@/hooks/useSiteSettings";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 
 const formatPhoneDisplay = (raw: string) => {
   const digits = raw.replace(/\D/g, "");

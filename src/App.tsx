@@ -4,7 +4,8 @@ import { BrowserRouter, Navigate, Route, Routes, useLocation } from "react-route
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
-import { useSiteSettings } from "./hooks/useSiteSettings";
+import { SiteSettingsProvider, useSiteSettings } from "./contexts/SiteSettingsContext";
+import { GalleryMediaProvider } from "./contexts/GalleryMediaContext";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -78,6 +79,8 @@ const App = () => {
   return (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
+      <SiteSettingsProvider>
+      <GalleryMediaProvider>
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -106,6 +109,8 @@ const App = () => {
           <FloatingWhatsApp />
         </BrowserRouter>
       </TooltipProvider>
+      </GalleryMediaProvider>
+      </SiteSettingsProvider>
     </AuthProvider>
     </QueryClientProvider>
   );
