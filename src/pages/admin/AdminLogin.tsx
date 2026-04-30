@@ -15,9 +15,21 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
+
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+
+    if (!supabaseUrl || !supabaseKey) {
+      console.error('Missing Supabase config:', { url: !!supabaseUrl, key: !!supabaseKey });
+      setError('Konfigurasi Supabase tidak ditemukan. Periksa environment variables.');
+      setLoading(false);
+      return;
+    }
+
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
-      setError('Email atau password salah. Silakan coba lagi.');
+      console.error('Login error:', error.message, error.status);
+      setError(error.message || 'Email atau password salah. Silakan coba lagi.');
       setLoading(false);
     } else {
       navigate('/admin/panel');

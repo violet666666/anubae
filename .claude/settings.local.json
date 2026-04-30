@@ -18,7 +18,18 @@
       "Bash(gh repo *)",
       "Bash(curl *)",
       "Bash(npx tsc *)",
-      "Bash(./node_modules/.bin/tsc --noEmit)"
+      "Bash(./node_modules/.bin/tsc --noEmit)",
+      "Bash(pip install *)",
+      "Bash(python3 -c \"import psycopg2; print\\('psycopg2 available'\\)\")",
+      "Bash(pip3 install *)",
+      "Bash(python3 -m pip install psycopg2-binary)",
+      "Bash(apt list *)",
+      "Bash(python3 -c \"import psycopg2\")",
+      "Bash(python3 -c \"import pg8000\")",
+      "Bash(python3 *)",
+      "Bash(apt-get update *)",
+      "Bash(apt-get install *)",
+      "Bash(sudo apt-get *)"
     ]
   }
 }
