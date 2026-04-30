@@ -5,37 +5,52 @@ import { useAuth } from '@/contexts/AuthContext';
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, loading } = useAuth();
-  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+  const [authState, setAuthState] = useState<'checking' | 'authorized' | 'unauthorized'>('checking');
 
   useEffect(() => {
-    if (!user) {
-      setIsAdmin(false);
-      return;
-    }
+    let cancelled = false;
 
-    const checkAdmin = async () => {
-      // Primary: verify role via database (requires admin_users table in Supabase)
-      // See README for setup instructions.
-      const { data, error } = await supabase
-        .from('admin_users')
-        .select('id')
-        .eq('user_id', user.id)
-        .single();
+    const checkAuth = async () => {
+      // Use context user if available, otherwise verify session directly.
+      // This handles the race condition where navigate() fires before
+      // onAuthStateChange updates the context.
+      let currentUser = user;
+      if (!currentUser) {
+        const { data: { session } } = await supabase.auth.getSession();
+        currentUser = session?.user ?? null;
+      }
 
-      if (!error && data) {
-        setIsAdmin(true);
+      if (cancelled) return;
+
+      if (!currentUser) {
+        setAuthState('unauthorized');
         return;
       }
 
-      // Fallback: check user_metadata.role (less secure — client-modifiable)
-      const role = user.user_metadata?.role;
-      setIsAdmin(role === 'admin');
+      // Primary: verify role via admin_users table
+      const { data, error } = await supabase
+        .from('admin_users')
+        .select('id')
+        .eq('user_id', currentUser.id)
+        .single();
+
+      if (cancelled) return;
+
+      if (!error && data) {
+        setAuthState('authorized');
+        return;
+      }
+
+      // Fallback: check user_metadata.role
+      setAuthState(currentUser.user_metadata?.role === 'admin' ? 'authorized' : 'unauthorized');
     };
 
-    checkAdmin();
+    checkAuth();
+
+    return () => { cancelled = true; };
   }, [user]);
 
-  if (loading || isAdmin === null) {
+  if (loading || authState === 'checking') {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="h-10 w-10 rounded-full border-2 border-muted border-t-primary animate-spin" />
@@ -43,7 +58,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     );
   }
 
-  if (!user || !isAdmin) {
+  if (authState === 'unauthorized') {
     return <Navigate to="/admin/login" replace />;
   }
 

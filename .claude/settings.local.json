@@ -29,7 +29,14 @@
       "Bash(python3 *)",
       "Bash(apt-get update *)",
       "Bash(apt-get install *)",
-      "Bash(sudo apt-get *)"
+      "Bash(sudo apt-get *)",
+      "Bash(env)",
+      "Bash(printenv)",
+      "Bash(grep -E \"\\\\.\\(js|ts|tsx\\)$\")",
+      "Bash(npx supabase *)",
+      "Bash(vercel env *)",
+      "Bash(npx vercel *)",
+      "Bash(export PATH=\"/usr/local/bin:/home/tegar/.nvm/versions/node/*/bin:$PATH\")"
     ]
   }
 }
