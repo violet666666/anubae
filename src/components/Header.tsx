@@ -3,17 +3,6 @@ import { Menu, X, MessageCircle } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 
-const ApertureLogo = () => (
-  <img
-    src="/anubae-logo2.png"
-    alt="Anubae Organizer"
-    width="280"
-    height="40"
-    loading="eager"
-    className="h-20 w-auto object-contain"
-  />
-);
-
 const navLinks = [
   { label: "Tentang Kami", id: "tentang-kami" },
   { label: "Wedding", id: "wedding" },
@@ -28,9 +17,10 @@ const Header = () => {
   const [activeId, setActiveId] = useState<string>("");
   const navigate = useNavigate();
   const location = useLocation();
-  const { getWALink } = useSiteSettings();
+  const { getWALink, settings } = useSiteSettings();
+  const isHome = location.pathname === "/";
 
-  const handleLogoClick = () => {
+  const goHome = () => {
     setMobileOpen(false);
     setActiveId("");
     if (location.pathname !== "/") {
@@ -47,6 +37,7 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
+    if (!isHome) { setActiveId(""); return; }
     const ids = ["tentang-kami", "wedding", "multimedia", "videotron", "katalog-foto", "katalog-video"];
     const observers = ids.map((id) => {
       const el = document.getElementById(id);
@@ -54,26 +45,32 @@ const Header = () => {
       const obs = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
-            // map katalog-video to "katalog" link active state too
             setActiveId(id === "katalog-video" ? "katalog-foto" : id);
           }
         },
-        { rootMargin: "-40% 0px -55% 0px", threshold: 0 }
+        { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
       );
       obs.observe(el);
       return obs;
     });
     return () => observers.forEach((o) => o?.disconnect());
-  }, []);
+  }, [isHome]);
 
   const scrollTo = (id: string) => {
     setMobileOpen(false);
+    if (!isHome) {
+      navigate("/");
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+      return;
+    }
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const openWhatsApp = () => {
     setMobileOpen(false);
-    const url = getWALink("Halo Anubae Organizer, saya ingin konsultasi gratis untuk acara saya.");
+    const url = getWALink(`Halo ${settings.company_name}, saya ingin konsultasi gratis untuk acara saya.`);
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
@@ -86,17 +83,24 @@ const Header = () => {
       }`}
     >
       <nav className="flex items-center justify-between px-4 md:px-8 py-3 md:py-4 max-w-7xl mx-auto">
-        <button
-          aria-label="Anubae Organizer Home"
-          onClick={handleLogoClick}
-          className="flex-shrink-0"
-        >
-          <ApertureLogo />
+        <button aria-label={`${settings.company_name} Home`} onClick={goHome} className="flex-shrink-0">
+          <img src="/anubae-logo2.png" alt={settings.company_name} width="280" height="40" loading="eager" className="h-20 w-auto object-contain" />
         </button>
 
         <div className="hidden md:flex items-center gap-8 lg:gap-10">
+          <button
+            onClick={goHome}
+            className={`relative text-sm font-medium tracking-wide transition-colors duration-200 ${
+              isHome && !activeId ? "text-primary" : "text-foreground hover:text-primary"
+            }`}
+          >
+            Home
+            {isHome && !activeId && (
+              <span className="absolute -bottom-1.5 left-0 right-0 mx-auto w-6 h-0.5 bg-primary rounded-full" />
+            )}
+          </button>
           {navLinks.map((link) => {
-            const isActive = activeId === link.id;
+            const isActive = isHome && activeId === link.id;
             return (
               <button
                 key={link.id}
@@ -140,12 +144,20 @@ const Header = () => {
         style={{ backgroundColor: "#0a0a0a" }}
       >
         <div className="flex flex-col">
+          <button
+            onClick={goHome}
+            className={`w-full text-left px-6 py-4 text-base font-medium border-b border-border transition-colors duration-200 ${
+              isHome && !activeId ? "text-primary" : "text-foreground hover:text-primary"
+            }`}
+          >
+            Home
+          </button>
           {navLinks.map((link) => (
             <button
               key={link.id}
               onClick={() => scrollTo(link.id)}
               className={`w-full text-left px-6 py-4 text-base font-medium border-b border-border transition-colors duration-200 ${
-                activeId === link.id ? "text-primary" : "text-foreground hover:text-primary"
+                isHome && activeId === link.id ? "text-primary" : "text-foreground hover:text-primary"
               }`}
             >
               {link.label}

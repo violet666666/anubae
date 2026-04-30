@@ -2,6 +2,11 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import { supabase } from '@/integrations/supabase/client';
 
 type SiteSettings = {
+  company_name: string;
+  description: string;
+  address: string;
+  phone: string;
+  business_hours: string;
   whatsapp_number: string;
   instagram_url: string;
   youtube_url: string;
@@ -9,6 +14,11 @@ type SiteSettings = {
 };
 
 const DEFAULT_SETTINGS: SiteSettings = {
+  company_name: 'Anubae Organizer',
+  description: 'Mewujudkan momen tak terlupakan untuk setiap acara Anda.',
+  address: 'Makassar, Sulawesi Selatan',
+  phone: '6281242401771',
+  business_hours: 'Senin - Sabtu, 08:00 - 17:00',
   whatsapp_number: '6281242401771',
   instagram_url: 'https://www.instagram.com/anubae.organizer',
   youtube_url: 'https://www.youtube.com/@Anubaeorganizer/videos',
@@ -37,7 +47,7 @@ export const SiteSettingsProvider = ({ children }: { children: ReactNode }) => {
       if (data) {
         const mapped = data.reduce(
           (acc, row) => ({ ...acc, [row.key]: row.value }),
-          {} as Partial<SiteSettings>
+          {} as Partial<SiteSettings>,
         );
         setSettings({ ...DEFAULT_SETTINGS, ...mapped });
       }
