@@ -51,8 +51,15 @@ export const GalleryMediaProvider = ({ children }: { children: ReactNode }) => {
       .order('sort_order', { ascending: true })
       .order('created_at', { ascending: false });
 
-    if (error || !data || data.length === 0) {
+    if (error || !data) {
       setImages(galleryImages);
+      setVideos([]);
+      setLoading(false);
+      return;
+    }
+
+    if (data.length === 0) {
+      setImages([]);
       setVideos([]);
       setLoading(false);
       return;
@@ -62,7 +69,7 @@ export const GalleryMediaProvider = ({ children }: { children: ReactNode }) => {
     const imageItems = media.filter((m) => m.media_type !== 'video');
     const videoItems = media.filter((m) => m.media_type === 'video');
 
-    setImages(imageItems.length > 0 ? imageItems.map(mapToGalleryImage) : galleryImages);
+    setImages(imageItems.map(mapToGalleryImage));
     setVideos(videoItems);
     setLoading(false);
   };

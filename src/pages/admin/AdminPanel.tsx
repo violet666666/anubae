@@ -45,12 +45,12 @@ const AdminPanel = () => {
   };
 
   const tabs = [
-    { id: 'media' as const, label: '📸 Katalog Media' },
-    { id: 'settings' as const, label: '⚙️ Pengaturan' },
-    { id: 'templates' as const, label: '💬 Template Pesan' },
+    { id: 'media' as const, label: 'Portofolio' },
+    { id: 'settings' as const, label: 'Pengaturan' },
+    { id: 'templates' as const, label: 'Template WA' },
     {
       id: 'messages' as const,
-      label: `📬 Pesan Masuk${unreadCount ? ` (${unreadCount} baru)` : submissionsCount ? ` (${submissionsCount})` : ''}`,
+      label: `Pesan${unreadCount ? ` (${unreadCount} baru)` : submissionsCount ? ` (${submissionsCount})` : ''}`,
     },
   ];
 
