@@ -4,7 +4,21 @@
       "Bash(npm install *)",
       "Bash(npm run *)",
       "Bash(node scripts/create-admin.mjs)",
-      "Bash(node scripts/verify-admin.mjs)"
+      "Bash(node scripts/verify-admin.mjs)",
+      "WebSearch",
+      "Bash(git rm *)",
+      "Bash(bun run *)",
+      "Read(//home/tegar/.nvm/versions/**)",
+      "Read(//usr/local/bin/**)",
+      "Read(//home/tegar/.local/bin/**)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(gh api *)",
+      "Bash(gh repo *)",
+      "Bash(curl *)",
+      "Bash(npx tsc *)",
+      "Bash(./node_modules/.bin/tsc --noEmit)"
     ]
   }
 }
