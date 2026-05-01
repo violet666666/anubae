@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { useContentSettings } from "@/hooks/useContentSettings";
+
+const DEFAULT_TITLE = "Portofolio Kami";
 
 const tabs = [
   { id: "katalog-foto", label: "Foto", icon: "📷" },
@@ -6,6 +9,8 @@ const tabs = [
 ] as const;
 
 const KatalogTabs = () => {
+  const { values } = useContentSettings(["katalog_title"]);
+  const title = values.katalog_title || DEFAULT_TITLE;
   const [active, setActive] = useState<string>("katalog-foto");
 
   useEffect(() => {
@@ -33,7 +38,7 @@ const KatalogTabs = () => {
     <section id="portofolio" className="bg-background pt-24 pb-4 px-4 md:px-8">
       <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
         <h2 className="text-foreground text-3xl md:text-4xl font-bold tracking-tight text-center">
-          Portofolio Kami
+          {title}
         </h2>
         <div className="inline-flex items-center gap-3 p-1.5 rounded-full bg-muted border border-border">
           {tabs.map((tab) => {

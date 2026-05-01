@@ -2,11 +2,19 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import FadeInSection from "./FadeInSection";
 import { useGalleryMedia } from "@/contexts/GalleryMediaContext";
+import { useContentSettings } from "@/hooks/useContentSettings";
 import type { MediaItem } from "@/contexts/GalleryMediaContext";
+
+const DEFAULT_TITLE = "Katalog Video";
+const DEFAULT_DESC = "Highlight video sinematik dari setiap momen istimewa yang kami abadikan";
 
 const KatalogVideo = () => {
   const { videos, loading } = useGalleryMedia();
+  const { values } = useContentSettings(["katalog_video_title", "katalog_video_desc"]);
   const [activeVideo, setActiveVideo] = useState<MediaItem | null>(null);
+
+  const title = values.katalog_video_title || DEFAULT_TITLE;
+  const desc = values.katalog_video_desc || DEFAULT_DESC;
 
   if (!loading && videos.length === 0) return null;
 
@@ -15,11 +23,9 @@ const KatalogVideo = () => {
       <FadeInSection>
         <div className="text-center mb-16">
           <h2 className="inline-block text-foreground text-4xl md:text-5xl font-bold tracking-tight pb-3 border-b-4 border-primary">
-            Katalog Video
+            {title}
           </h2>
-          <p className="text-muted-foreground text-lg mt-6 max-w-2xl mx-auto">
-            Highlight video sinematik dari setiap momen istimewa yang kami abadikan
-          </p>
+          <p className="text-muted-foreground text-lg mt-6 max-w-2xl mx-auto">{desc}</p>
         </div>
       </FadeInSection>
 

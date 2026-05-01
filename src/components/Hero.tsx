@@ -6,23 +6,27 @@ const DEFAULT_WORDS = ["Wedding Impian", "Momen Istimewa", "Kenangan Abadi", "Ac
 const DEFAULT_TAGLINE = "Wujudkan acara impian Anda bersama kami";
 
 const Hero = () => {
-  const { values, loading } = useContentSettings(["hero_bg_image", "hero_tagline"]);
+  const { values, loading } = useContentSettings(["hero_bg_image", "hero_tagline", "hero_rotating_words"]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
   const bgImage = values.hero_bg_image || "/hero.png";
   const tagline = values.hero_tagline || DEFAULT_TAGLINE;
+  const words = values.hero_rotating_words
+    ? values.hero_rotating_words.split(",").map((w: string) => w.trim()).filter(Boolean)
+    : DEFAULT_WORDS;
+  const rotatingWords = words.length > 0 ? words : DEFAULT_WORDS;
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIsVisible(false);
       setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % DEFAULT_WORDS.length);
+        setCurrentIndex((prev) => (prev + 1) % rotatingWords.length);
         setIsVisible(true);
       }, 400);
     }, 2500);
     return () => clearInterval(interval);
-  }, []);
+  }, [rotatingWords.length]);
 
   const baseAnim = {
     animationFillMode: "both" as const,
@@ -71,7 +75,7 @@ const Hero = () => {
               transition: "opacity 400ms ease, transform 400ms ease",
             }}
           >
-            {DEFAULT_WORDS[currentIndex]}
+            {rotatingWords[currentIndex]}
           </span>
         </div>
 

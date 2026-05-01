@@ -1,19 +1,24 @@
 import FadeInSection from "./FadeInSection";
 import { useGalleryMedia } from "@/contexts/GalleryMediaContext";
+import { useContentSettings } from "@/hooks/useContentSettings";
+
+const DEFAULT_TITLE = "Katalog Foto";
+const DEFAULT_DESC = "Dokumentasi foto acara-acara terbaik yang telah kami tangani";
 
 const KatalogFoto = () => {
   const { images, loading } = useGalleryMedia();
+  const { values } = useContentSettings(["katalog_foto_title", "katalog_foto_desc"]);
+  const title = values.katalog_foto_title || DEFAULT_TITLE;
+  const desc = values.katalog_foto_desc || DEFAULT_DESC;
 
   return (
     <section id="katalog-foto" className="bg-background py-24 px-4 md:px-8">
       <FadeInSection>
         <div className="text-center mb-16">
           <h2 className="inline-block text-foreground text-4xl md:text-5xl font-bold tracking-tight pb-3 border-b-4 border-primary">
-            Katalog Foto
+            {title}
           </h2>
-          <p className="text-muted-foreground text-lg mt-6 max-w-2xl mx-auto">
-            Dokumentasi foto acara-acara terbaik yang telah kami tangani
-          </p>
+          <p className="text-muted-foreground text-lg mt-6 max-w-2xl mx-auto">{desc}</p>
         </div>
       </FadeInSection>
 
