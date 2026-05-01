@@ -46,7 +46,7 @@ const AdminPanel = () => {
   };
 
   const tabs = [
-    { id: 'media' as const, label: 'Portofolio' },
+    { id: 'media' as const, label: 'Katalog Foto & Video' },
     { id: 'content' as const, label: 'Konten' },
     { id: 'settings' as const, label: 'Pengaturan' },
     { id: 'templates' as const, label: 'Template WA' },

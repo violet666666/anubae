@@ -231,7 +231,7 @@ const MediaTab = () => {
       {/* Upload section */}
       <section style={{ ...cardStyle, padding: '24px' }}>
         <h2 className="text-white font-semibold text-lg mb-1">Upload Media Baru</h2>
-        <p className="text-sm mb-4" style={{ color: '#666' }}>File yang diupload akan tampil di bagian "Portofolio Kami" pada halaman utama website.</p>
+        <p className="text-sm mb-4" style={{ color: '#666' }}>Upload foto dan video yang akan tampil di bagian "Katalog Foto" dan "Katalog Video" pada halaman utama website. Video bisa di-play langsung oleh pengunjung.</p>
 
         <div
           role="button"
@@ -303,12 +303,12 @@ const MediaTab = () => {
       <section style={{ ...cardStyle, padding: '24px' }}>
         <div className="flex items-center justify-between mb-4 flex-wrap gap-3">
           <div>
-            <h2 className="text-white font-semibold text-lg">Kelola Portofolio</h2>
+            <h2 className="text-white font-semibold text-lg">Kelola Katalog Foto & Video</h2>
             <p className="text-xs mt-0.5" style={{ color: '#666' }}>
               <Image size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} />
               {imageCount} foto &nbsp;
               <Film size={12} style={{ display: 'inline', verticalAlign: 'middle', marginRight: '4px' }} />
-              {videoCount} video — Klik nama untuk edit, geser urutan dengan panah
+              {videoCount} video — Tampil di section Katalog pada halaman utama. Klik nama untuk edit, geser urutan dengan panah.
             </p>
           </div>
           <div className="flex gap-2 flex-wrap">
