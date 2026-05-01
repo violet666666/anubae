@@ -21,6 +21,9 @@ const About = () => {
           <img
             src={image}
             alt={title}
+            width={800}
+            height={500}
+            loading="lazy"
             className="w-full h-[400px] md:h-[500px] object-cover rounded-2xl"
           />
         </FadeInSection>

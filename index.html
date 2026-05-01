@@ -5,24 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Anubae Organizer – Event Organizer Profesional Makassar</title>
     <meta name="description" content="Anubae Organizer, jasa event organizer profesional di Makassar. Melayani Wedding Photography & Videography, Live Cam, Sewa Videotron, dan Multimedia. Hubungi kami sekarang!" />
-    <meta name="keywords" content="event organizer makassar, wedding organizer makassar, sewa videotron makassar, live cam makassar, foto video wedding makassar, anubae organizer" />
+    <meta name="keywords" content="event organizer makassar, wedding organizer makassar, sewa videotron makassar, live cam makassar, foto video wedding makassar, anubae organizer, paket wedding makassar, dokumentasi wedding makassar" />
     <meta name="author" content="Anubae Organizer" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#80f0ff" />
     <link rel="canonical" href="https://anubae.vercel.app/" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
-    <!-- Open Graph (for sharing on social media) -->
-    <meta property="og:type" content="website" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="business.business" />
     <meta property="og:url" content="https://anubae.vercel.app/" />
     <meta property="og:title" content="Anubae Organizer – Event Organizer Profesional Makassar" />
     <meta property="og:description" content="Jasa event organizer profesional di Makassar. Wedding, Live Cam, Videotron, Multimedia. Harga mulai Rp 1.500.000." />
-    <meta property="og:image" content="/hero.png" />
+    <meta property="og:image" content="https://anubae.vercel.app/hero.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:site_name" content="Anubae Organizer" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@anubaeorganizer" />
     <meta name="twitter:title" content="Anubae Organizer – Event Organizer Profesional Makassar" />
     <meta name="twitter:description" content="Jasa event organizer profesional di Makassar. Wedding, Live Cam, Videotron, Multimedia." />
-    <meta name="twitter:image" content="/hero.png" />
+    <meta name="twitter:image" content="https://anubae.vercel.app/hero.png" />
 
+    <!-- Geo tags for local SEO -->
+    <meta name="geo.region" content="ID-SN" />
+    <meta name="geo.placename" content="Makassar" />
+    <meta name="geo.position" content="-5.1477;119.4327" />
+    <meta name="ICBM" content="-5.1477, 119.4327" />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -31,22 +45,28 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
+      "@id": "https://anubae.vercel.app/#business",
       "name": "Anubae Organizer",
       "description": "Event organizer profesional di Makassar melayani wedding photography & videography, live cam, sewa videotron, dan multimedia",
       "url": "https://anubae.vercel.app",
       "telephone": "+6281242401771",
+      "image": "https://anubae.vercel.app/anubae-logo2.png",
+      "logo": "https://anubae.vercel.app/anubae-logo2.png",
       "sameAs": [
-        "https://www.youtube.com/@Anubaeorganizer/videos",
-        "https://maps.app.goo.gl/7yRLUaKsPGzbwHvy8"
+        "https://www.instagram.com/anubae.organizer",
+        "https://www.youtube.com/@Anubaeorganizer/videos"
       ],
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "Makassar",
         "addressLocality": "Makassar",
         "addressRegion": "Sulawesi Selatan",
+        "postalCode": "90132",
         "addressCountry": "ID"
       },
       "geo": {
@@ -54,9 +74,62 @@
         "latitude": -5.1477,
         "longitude": 119.4327
       },
-      "openingHours": "Mo-Su 08:00-22:00",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "08:00",
+        "closes": "17:00"
+      },
       "priceRange": "Rp 1.500.000 – Rp 6.999.999",
-      "hasMap": "https://maps.app.goo.gl/7yRLUaKsPGzbwHvy8"
+      "hasMap": "https://maps.app.goo.gl/7yRLUaKsPGzbwHvy8",
+      "currenciesAccepted": "IDR",
+      "paymentAccepted": "Cash, Transfer Bank"
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Event Organizer",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Anubae Organizer"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Makassar"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Layanan Anubae Organizer",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Wedding Organizer",
+              "description": "Paket wedding organizer mulai dari Rp 3.999.999 termasuk album, video, dan dokumentasi."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Live Cam Multimedia",
+              "description": "Layanan live cam 1-3 kamera mulai dari Rp 1.500.000 per event."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Sewa Videotron",
+              "description": "Sewa layar LED videotron mulai Rp 500.000 per meter per hari di Makassar."
+            }
+          }
+        ]
+      }
     }
     </script>
   </body>
