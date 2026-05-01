@@ -36,7 +36,14 @@
       "Bash(npx supabase *)",
       "Bash(vercel env *)",
       "Bash(npx vercel *)",
-      "Bash(export PATH=\"/usr/local/bin:/home/tegar/.nvm/versions/node/*/bin:$PATH\")"
+      "Bash(export PATH=\"/usr/local/bin:/home/tegar/.nvm/versions/node/*/bin:$PATH\")",
+      "Bash(gh auth *)",
+      "Bash(npx vite *)",
+      "Bash(git hash-object *)",
+      "Bash(git fsck *)",
+      "Bash(git gc *)",
+      "Bash(chmod *)",
+      "Bash(sudo chown *)"
     ]
   }
 }
