@@ -1,8 +1,12 @@
+import { useState } from "react";
+import { X } from "lucide-react";
 import FadeInSection from "./FadeInSection";
 import { useGalleryMedia } from "@/contexts/GalleryMediaContext";
+import type { MediaItem } from "@/contexts/GalleryMediaContext";
 
 const KatalogVideo = () => {
   const { videos, loading } = useGalleryMedia();
+  const [activeVideo, setActiveVideo] = useState<MediaItem | null>(null);
 
   if (!loading && videos.length === 0) return null;
 
@@ -29,13 +33,17 @@ const KatalogVideo = () => {
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {videos.map((video, i) => (
             <FadeInSection key={video.id} delay={i * 80}>
-              <div className="relative overflow-hidden rounded-xl group aspect-video border border-border">
+              <button
+                type="button"
+                onClick={() => setActiveVideo(video)}
+                className="relative overflow-hidden rounded-xl group aspect-video border border-border w-full text-left cursor-pointer block"
+              >
                 <video
                   src={video.file_url}
                   poster={video.thumbnail_url || undefined}
                   muted
                   preload="metadata"
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 pointer-events-none"
                 />
                 <div className="absolute inset-0 bg-background/40 group-hover:bg-background/20 transition-all duration-300 flex items-center justify-center">
                   <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -48,9 +56,32 @@ const KatalogVideo = () => {
                   <p className="text-foreground text-sm font-semibold">{video.title || 'Untitled'}</p>
                   {video.category && <p className="text-primary text-xs mt-0.5">{video.category}</p>}
                 </div>
-              </div>
+              </button>
             </FadeInSection>
           ))}
+        </div>
+      )}
+
+      {activeVideo && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setActiveVideo(null)}
+        >
+          <button
+            onClick={() => setActiveVideo(null)}
+            className="absolute top-4 right-4 text-white p-2 rounded-full hover:bg-white/10 transition-colors"
+            aria-label="Close"
+          >
+            <X className="w-6 h-6" />
+          </button>
+          <div onClick={(e) => e.stopPropagation()} className="max-w-[90vw] max-h-[90vh]">
+            <video
+              src={activeVideo.file_url}
+              controls
+              autoPlay
+              className="max-h-[90vh] max-w-[90vw] object-contain rounded-lg"
+            />
+          </div>
         </div>
       )}
     </section>

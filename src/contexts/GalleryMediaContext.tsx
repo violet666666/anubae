@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import { supabase } from '@/integrations/supabase/client';
 import { galleryImages, type GalleryImage } from '@/data/galleryData';
 
-type MediaItem = {
+export type MediaItem = {
   id: string;
   title: string | null;
   category: string | null;
