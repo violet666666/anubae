@@ -2,9 +2,9 @@ import { Check, MapPin, Truck } from "lucide-react";
 import FadeInSection from "./FadeInSection";
 import { useWATemplates } from "@/hooks/useWATemplates";
 import { useSiteSettings } from "@/contexts/SiteSettingsContext";
+import { useContentSettings } from "@/hooks/useContentSettings";
 
 type LocationPackage = {
-  icon: typeof MapPin;
   title: string;
   price: string;
   description: string;
@@ -12,9 +12,10 @@ type LocationPackage = {
   templateKey: string;
 };
 
-const locationPackages: LocationPackage[] = [
+const ICON_MAP: Record<string, typeof MapPin> = { MapPin, Truck };
+
+const DEFAULT_PACKAGES: LocationPackage[] = [
   {
-    icon: MapPin,
     title: "Dalam Kota Makassar",
     price: "Rp 500.000",
     description: "Meliputi seluruh wilayah dalam Kota Makassar dan sekitarnya",
@@ -22,7 +23,6 @@ const locationPackages: LocationPackage[] = [
     templateKey: "videotron_dalam",
   },
   {
-    icon: Truck,
     title: "Luar Kota Makassar",
     price: "Rp 700.000",
     description: "Meliputi kota-kota lain di Sulawesi Selatan dan sekitarnya",
@@ -36,9 +36,27 @@ const locationPackages: LocationPackage[] = [
   },
 ];
 
+const DEFAULT_SECTION_TITLE = "Harga Sewa Videotron";
+const DEFAULT_SECTION_DESC = "Solusi layar LED profesional untuk setiap kebutuhan acara Anda";
+const DEFAULT_PROMO = "📺 Tersedia berbagai ukuran — Konsultasikan kebutuhan Anda bersama tim kami";
+const DEFAULT_DISCLAIMER = "*Harga per meter per hari. Minimum pemesanan 4m². Hubungi kami untuk survei lokasi gratis.";
+
+const parsePackages = (json?: string): LocationPackage[] => {
+  if (!json) return DEFAULT_PACKAGES;
+  try { const parsed = JSON.parse(json); return Array.isArray(parsed) && parsed.length > 0 ? parsed : DEFAULT_PACKAGES; } catch { return DEFAULT_PACKAGES; }
+};
+
 const Videotron = () => {
   const templates = useWATemplates();
   const { settings } = useSiteSettings();
+  const { values } = useContentSettings(["videotron_section_title", "videotron_section_desc", "videotron_promo_text", "videotron_packages", "videotron_disclaimer"]);
+
+  const packages = parsePackages(values.videotron_packages);
+  const sectionTitle = values.videotron_section_title || DEFAULT_SECTION_TITLE;
+  const sectionDesc = values.videotron_section_desc || DEFAULT_SECTION_DESC;
+  const promoText = values.videotron_promo_text || DEFAULT_PROMO;
+  const disclaimer = values.videotron_disclaimer || DEFAULT_DISCLAIMER;
+
   const buildWaUrl = (key: string) =>
     `https://wa.me/${settings.whatsapp_number}?text=${encodeURIComponent(templates[key] ?? "")}`;
 
@@ -55,10 +73,10 @@ const Videotron = () => {
               <div className="w-8 h-1 bg-primary rounded-full" />
             </div>
             <h2 className="text-foreground text-4xl md:text-5xl font-bold tracking-tight mb-4">
-              Harga Sewa Videotron
+              {sectionTitle}
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Solusi layar LED profesional untuk setiap kebutuhan acara Anda
+              {sectionDesc}
             </p>
           </div>
         </FadeInSection>
@@ -69,16 +87,16 @@ const Videotron = () => {
             className="w-full text-center font-bold rounded-xl px-6 py-4 mb-10 border border-primary max-w-3xl mx-auto"
             style={{ backgroundColor: "rgba(128,240,255,0.1)", color: "#80f0ff" }}
           >
-            📺 Tersedia berbagai ukuran — Konsultasikan kebutuhan Anda bersama tim kami
+            {promoText}
           </div>
         </FadeInSection>
 
         {/* Pricing cards */}
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-[700px] mx-auto items-stretch">
-          {locationPackages.map((pkg, i) => {
-            const Icon = pkg.icon;
+          {packages.map((pkg, i) => {
+            const Icon = i === 0 ? MapPin : Truck;
             return (
-              <FadeInSection key={pkg.title} delay={i * 120}>
+              <FadeInSection key={pkg.templateKey} delay={i * 120}>
                 <div
                   className="relative h-full flex flex-col justify-between rounded-2xl p-8 border border-border transition-all duration-300 hover:shadow-[0_0_24px_rgba(128,240,255,0.15)]"
                   style={{ backgroundColor: "#111111" }}
@@ -129,7 +147,7 @@ const Videotron = () => {
         </div>
 
         <p className="text-center text-muted-foreground text-sm mt-10 italic">
-          *Harga per meter per hari. Minimum pemesanan 4m². Hubungi kami untuk survei lokasi gratis.
+          {disclaimer}
         </p>
       </div>
     </section>

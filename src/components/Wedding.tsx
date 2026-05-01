@@ -2,6 +2,7 @@ import { Check } from "lucide-react";
 import FadeInSection from "./FadeInSection";
 import { useWATemplates } from "@/hooks/useWATemplates";
 import { useSiteSettings } from "@/contexts/SiteSettingsContext";
+import { useContentSettings } from "@/hooks/useContentSettings";
 
 type Package = {
   name: string;
@@ -11,7 +12,7 @@ type Package = {
   templateKey: string;
 };
 
-const packages: Package[] = [
+const DEFAULT_PACKAGES: Package[] = [
   {
     name: "Basic Package",
     price: "Rp 3.999.999",
@@ -55,9 +56,25 @@ const packages: Package[] = [
   },
 ];
 
+const DEFAULT_SECTION_TITLE = "Wedding Organizer";
+const DEFAULT_SECTION_DESC = "Wujudkan pernikahan impian dengan layanan wedding organizer profesional kami";
+const DEFAULT_DISCLAIMER = "*Harga dapat berubah sewaktu-waktu. Hubungi kami untuk penawaran terbaik.";
+
+const parsePackages = (json?: string): Package[] => {
+  if (!json) return DEFAULT_PACKAGES;
+  try { const parsed = JSON.parse(json); return Array.isArray(parsed) && parsed.length > 0 ? parsed : DEFAULT_PACKAGES; } catch { return DEFAULT_PACKAGES; }
+};
+
 const Wedding = () => {
   const templates = useWATemplates();
   const { settings } = useSiteSettings();
+  const { values } = useContentSettings(["wedding_section_title", "wedding_section_desc", "wedding_packages", "wedding_disclaimer"]);
+
+  const packages = parsePackages(values.wedding_packages);
+  const sectionTitle = values.wedding_section_title || DEFAULT_SECTION_TITLE;
+  const sectionDesc = values.wedding_section_desc || DEFAULT_SECTION_DESC;
+  const disclaimer = values.wedding_disclaimer || DEFAULT_DISCLAIMER;
+
   const buildWaUrl = (key: string) =>
     `https://wa.me/${settings.whatsapp_number}?text=${encodeURIComponent(templates[key] ?? "")}`;
 
@@ -72,10 +89,10 @@ const Wedding = () => {
               <div className="w-8 h-1 bg-primary rounded-full" />
             </div>
             <h2 className="text-foreground text-4xl md:text-5xl font-bold tracking-tight mb-4">
-              Wedding Organizer
+              {sectionTitle}
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Wujudkan pernikahan impian dengan layanan wedding organizer profesional kami
+              {sectionDesc}
             </p>
           </div>
         </FadeInSection>
@@ -84,7 +101,7 @@ const Wedding = () => {
           {packages.map((pkg, i) => {
             const isFeatured = pkg.featured;
             return (
-              <FadeInSection key={pkg.name} delay={i * 120}>
+              <FadeInSection key={pkg.templateKey} delay={i * 120}>
                 <div
                   className={`relative h-full flex flex-col justify-between rounded-2xl p-8 transition-all duration-300 hover:shadow-[0_0_24px_rgba(128,240,255,0.15)] ${
                     isFeatured
@@ -152,7 +169,7 @@ const Wedding = () => {
         </div>
 
         <p className="text-center text-muted-foreground text-sm mt-10 italic">
-          *Harga dapat berubah sewaktu-waktu. Hubungi kami untuk penawaran terbaik.
+          {disclaimer}
         </p>
       </div>
     </section>

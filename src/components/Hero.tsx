@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { useContentSettings } from "@/hooks/useContentSettings";
 
-const rotatingWords = [
-  "Wedding Impian",
-  "Momen Istimewa",
-  "Kenangan Abadi",
-  "Acara Profesional",
-  "Hari Spesialmu",
-];
+const DEFAULT_WORDS = ["Wedding Impian", "Momen Istimewa", "Kenangan Abadi", "Acara Profesional", "Hari Spesialmu"];
+const DEFAULT_TAGLINE = "Wujudkan acara impian Anda bersama kami";
 
 const Hero = () => {
+  const { values, loading } = useContentSettings(["hero_bg_image", "hero_tagline"]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+
+  const bgImage = values.hero_bg_image || "/hero.png";
+  const tagline = values.hero_tagline || DEFAULT_TAGLINE;
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIsVisible(false);
       setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % rotatingWords.length);
+        setCurrentIndex((prev) => (prev + 1) % DEFAULT_WORDS.length);
         setIsVisible(true);
       }, 400);
     }, 2500);
@@ -34,7 +34,7 @@ const Hero = () => {
   return (
     <section
       className="min-h-screen relative overflow-hidden flex items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/hero.png')" }}
+      style={{ backgroundImage: `url('${bgImage}')` }}
     >
       <div className="absolute inset-0 bg-black/55 z-0" />
 
@@ -71,7 +71,7 @@ const Hero = () => {
               transition: "opacity 400ms ease, transform 400ms ease",
             }}
           >
-            {rotatingWords[currentIndex]}
+            {DEFAULT_WORDS[currentIndex]}
           </span>
         </div>
 
@@ -79,7 +79,7 @@ const Hero = () => {
           className="hero-fade-up text-foreground/80 text-xl md:text-2xl mt-6 tracking-wide"
           style={{ animationDelay: "0.5s", ...baseAnim }}
         >
-          Wujudkan acara impian Anda bersama kami
+          {tagline}
         </p>
       </div>
 

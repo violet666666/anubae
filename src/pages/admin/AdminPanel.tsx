@@ -4,6 +4,7 @@ import { LogOut } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import MediaTab from './MediaTab';
+import ContentTab from './ContentTab';
 import SettingsTab from './SettingsTab';
 import TemplatesTab from './TemplatesTab';
 import MessagesTab from './MessagesTab';
@@ -21,7 +22,7 @@ type ContactSubmission = {
 const AdminPanel = () => {
   const navigate = useNavigate();
   const { user, signOut } = useAuth();
-  const [activeTab, setActiveTab] = useState<'media' | 'settings' | 'messages' | 'templates'>('media');
+  const [activeTab, setActiveTab] = useState<'media' | 'content' | 'settings' | 'messages' | 'templates'>('media');
   const [submissions, setSubmissions] = useState<ContactSubmission[]>([]);
   const unreadCount = submissions.filter((s) => !s.is_read).length;
   const submissionsCount = submissions.length;
@@ -46,6 +47,7 @@ const AdminPanel = () => {
 
   const tabs = [
     { id: 'media' as const, label: 'Portofolio' },
+    { id: 'content' as const, label: 'Konten' },
     { id: 'settings' as const, label: 'Pengaturan' },
     { id: 'templates' as const, label: 'Template WA' },
     {
@@ -112,6 +114,7 @@ const AdminPanel = () => {
       {/* Content */}
       <main className="max-w-[1200px] mx-auto px-6 py-8">
         {activeTab === 'media' && <MediaTab />}
+        {activeTab === 'content' && <ContentTab />}
         {activeTab === 'settings' && <SettingsTab />}
         {activeTab === 'templates' && <TemplatesTab />}
         {activeTab === 'messages' && <MessagesTab submissions={submissions} reload={loadSubmissions} />}

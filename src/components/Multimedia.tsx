@@ -2,6 +2,7 @@ import { Check } from "lucide-react";
 import FadeInSection from "./FadeInSection";
 import { useWATemplates } from "@/hooks/useWATemplates";
 import { useSiteSettings } from "@/contexts/SiteSettingsContext";
+import { useContentSettings } from "@/hooks/useContentSettings";
 
 type Package = {
   name: string;
@@ -12,7 +13,7 @@ type Package = {
   templateKey: string;
 };
 
-const packages: Package[] = [
+const DEFAULT_PACKAGES: Package[] = [
   {
     name: "1 Camera",
     badge: "Starter",
@@ -57,9 +58,27 @@ const packages: Package[] = [
   },
 ];
 
+const DEFAULT_SECTION_TITLE = "Layanan Multimedia";
+const DEFAULT_SECTION_DESC = "Solusi dokumentasi dan produksi multimedia lengkap untuk segala jenis acara";
+const DEFAULT_PROMO = "🎉 FREE LED TV 43 INCH UNTUK SEMUA PAKET LIVE CAM";
+const DEFAULT_DISCLAIMER = "*Harga belum termasuk transportasi di luar Makassar. Hubungi kami untuk detail lebih lanjut.";
+
+const parsePackages = (json?: string): Package[] => {
+  if (!json) return DEFAULT_PACKAGES;
+  try { const parsed = JSON.parse(json); return Array.isArray(parsed) && parsed.length > 0 ? parsed : DEFAULT_PACKAGES; } catch { return DEFAULT_PACKAGES; }
+};
+
 const Multimedia = () => {
   const templates = useWATemplates();
   const { settings } = useSiteSettings();
+  const { values } = useContentSettings(["multimedia_section_title", "multimedia_section_desc", "multimedia_promo_text", "multimedia_packages", "multimedia_disclaimer"]);
+
+  const packages = parsePackages(values.multimedia_packages);
+  const sectionTitle = values.multimedia_section_title || DEFAULT_SECTION_TITLE;
+  const sectionDesc = values.multimedia_section_desc || DEFAULT_SECTION_DESC;
+  const promoText = values.multimedia_promo_text || DEFAULT_PROMO;
+  const disclaimer = values.multimedia_disclaimer || DEFAULT_DISCLAIMER;
+
   const buildWaUrl = (key: string) =>
     `https://wa.me/${settings.whatsapp_number}?text=${encodeURIComponent(templates[key] ?? "")}`;
 
@@ -74,10 +93,10 @@ const Multimedia = () => {
               <div className="w-8 h-1 bg-primary rounded-full" />
             </div>
             <h2 className="text-foreground text-4xl md:text-5xl font-bold tracking-tight mb-4">
-              Layanan Multimedia
+              {sectionTitle}
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Solusi dokumentasi dan produksi multimedia lengkap untuk segala jenis acara
+              {sectionDesc}
             </p>
           </div>
         </FadeInSection>
@@ -88,7 +107,7 @@ const Multimedia = () => {
             className="w-full text-center font-bold rounded-xl px-6 py-4 mb-8 border border-primary"
             style={{ backgroundColor: "rgba(128,240,255,0.1)", color: "#80f0ff" }}
           >
-            🎉 FREE LED TV 43 INCH UNTUK SEMUA PAKET LIVE CAM
+            {promoText}
           </div>
         </FadeInSection>
 
@@ -96,7 +115,7 @@ const Multimedia = () => {
           {packages.map((pkg, i) => {
             const isFeatured = pkg.featured;
             return (
-              <FadeInSection key={pkg.name} delay={i * 120}>
+              <FadeInSection key={pkg.templateKey} delay={i * 120}>
                 <div
                   className={`relative h-full flex flex-col justify-between rounded-2xl p-8 transition-all duration-300 hover:shadow-[0_0_24px_rgba(128,240,255,0.15)] ${
                     isFeatured
@@ -158,7 +177,7 @@ const Multimedia = () => {
         </div>
 
         <p className="text-center text-muted-foreground text-sm mt-10 italic">
-          *Harga belum termasuk transportasi di luar Makassar. Hubungi kami untuk detail lebih lanjut.
+          {disclaimer}
         </p>
       </div>
     </section>
