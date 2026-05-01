@@ -1,37 +1,22 @@
-import { useEffect, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Play } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { supabase } from "@/integrations/supabase/client";
-
-type MediaItem = {
-  id: string;
-  title: string | null;
-  category: string | null;
-  media_type: string | null;
-  file_url: string;
-  thumbnail_url: string | null;
-  created_at: string;
-};
+import { useGalleryMedia } from "@/contexts/GalleryMediaContext";
 
 const GalleryDetail = () => {
   const { id } = useParams();
-  const [items, setItems] = useState<MediaItem[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { images: mediaItems, loading } = useGalleryMedia();
 
-  useEffect(() => {
-    const fetchMedia = async () => {
-      const { data, error } = await supabase
-        .from("gallery_media")
-        .select("*")
-        .order("sort_order", { ascending: true })
-        .order("created_at", { ascending: false });
-      if (!error && data) setItems(data as MediaItem[]);
-      setLoading(false);
-    };
-    fetchMedia();
-  }, []);
+  const items = mediaItems.map((img) => ({
+    id: img.id,
+    title: img.alt || img.caption,
+    category: img.course || img.student,
+    media_type: "image" as const,
+    file_url: img.src,
+    thumbnail_url: null as string | null,
+    created_at: "",
+  }));
 
   const index = items.findIndex((item) => item.id === id);
   const item = index !== -1 ? items[index] : null;
@@ -54,12 +39,6 @@ const GalleryDetail = () => {
 
   if (!item) return <Navigate to="/gallery" replace />;
 
-  const formattedDate = new Date(item.created_at).toLocaleDateString("id-ID", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-
   return (
     <>
       <Header />
@@ -74,20 +53,12 @@ const GalleryDetail = () => {
 
           <div className="grid lg:grid-cols-5 gap-10 md:gap-16">
             <div className="lg:col-span-3">
-              {item.media_type === "video" ? (
-                <video
-                  src={item.file_url}
-                  controls
-                  className="w-full rounded-2xl"
-                  poster={item.thumbnail_url || undefined}
-                />
-              ) : (
-                <img
-                  src={item.file_url}
-                  alt={item.title || "Gallery media"}
-                  className="w-full rounded-2xl"
-                />
-              )}
+              <img
+                src={item.file_url}
+                alt={item.title || "Gallery media"}
+                className="w-full rounded-2xl"
+                loading="lazy"
+              />
             </div>
 
             <div className="lg:col-span-2 space-y-6">
@@ -111,8 +82,7 @@ const GalleryDetail = () => {
               <div className="bg-muted rounded-xl p-6 space-y-4 border border-border">
                 <h3 className="text-foreground font-semibold text-sm tracking-wider uppercase">Detail</h3>
                 <div className="space-y-3 text-sm text-foreground/80">
-                  <p>{formattedDate}</p>
-                  <p>Tipe: {item.media_type === "video" ? "Video" : "Foto"}</p>
+                  <p>Tipe: Foto</p>
                 </div>
               </div>
             </div>

@@ -3,6 +3,7 @@ import { Send, CheckCircle } from "lucide-react";
 import FadeInSection from "./FadeInSection";
 import { supabase } from "@/integrations/supabase/client";
 import { useSiteSettings } from "@/contexts/SiteSettingsContext";
+import { toast } from "@/hooks/use-toast";
 
 const SERVICES = ["Wedding", "Live Cam", "Videotron", "Multimedia", "Lainnya"];
 
@@ -27,6 +28,7 @@ const ContactForm = () => {
     });
     setSubmitting(false);
     if (error) {
+      toast({ title: 'Gagal mengirim pesan', description: 'Terjadi kesalahan. Silakan coba lagi.', variant: 'destructive' });
       return;
     }
     setSubmitted(true);

@@ -18,15 +18,16 @@ const Hero = () => {
   const rotatingWords = words.length > 0 ? words : DEFAULT_WORDS;
 
   useEffect(() => {
+    const len = rotatingWords.length;
     const interval = setInterval(() => {
       setIsVisible(false);
       setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % rotatingWords.length);
+        setCurrentIndex((prev) => (prev + 1) % len);
         setIsVisible(true);
       }, 400);
     }, 2500);
     return () => clearInterval(interval);
-  }, [rotatingWords.length]);
+  }, [rotatingWords.join(',')]);
 
   const baseAnim = {
     animationFillMode: "both" as const,

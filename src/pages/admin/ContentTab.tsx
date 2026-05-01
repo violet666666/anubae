@@ -115,7 +115,7 @@ const ContentTab = () => {
     setWedPkgs(parseJSON(values.wedding_packages, DEFAULT_WEDDING));
     setMulPkgs(parseJSON(values.multimedia_packages, DEFAULT_MULTIMEDIA));
     setVidPkgs(parseJSON(values.videotron_packages, DEFAULT_VIDEOTRON));
-  }, [loading]);
+  }, [values.wedding_packages, values.multimedia_packages, values.videotron_packages]);
 
   const handleSave = async () => {
     setSaving(true);
@@ -456,7 +456,7 @@ const ContentTab = () => {
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label style={labelStyle}>Judul</label>
-                  <input value={sec.title} onChange={(e) => setDynField(sec.id, 'title', e.target.value)} onBlur={() => updateDynSection(sec.id, { title: sec.title })} style={inputStyle} />
+                  <input value={sec.title} onChange={(e) => { setDynField(sec.id, 'title', e.target.value); updateDynSection(sec.id, { title: e.target.value }); }} style={inputStyle} />
                 </div>
                 <div>
                   <label style={labelStyle}>Layout</label>
@@ -468,7 +468,7 @@ const ContentTab = () => {
 
               <div>
                 <label style={labelStyle}>Konten</label>
-                <textarea value={sec.content} onChange={(e) => setDynField(sec.id, 'content', e.target.value)} onBlur={() => updateDynSection(sec.id, { content: sec.content })} rows={3} placeholder="Tulis konten section di sini…" style={{ ...inputStyle, resize: 'vertical', fontFamily: 'inherit' }} />
+                <textarea value={sec.content} onChange={(e) => { setDynField(sec.id, 'content', e.target.value); updateDynSection(sec.id, { content: e.target.value }); }} rows={3} placeholder="Tulis konten section di sini…" style={{ ...inputStyle, resize: 'vertical', fontFamily: 'inherit' }} />
               </div>
 
               {(sec.layout_type === 'text-image-left' || sec.layout_type === 'text-image-right' || sec.layout_type === 'full-banner') && (

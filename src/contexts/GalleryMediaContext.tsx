@@ -52,7 +52,7 @@ export const GalleryMediaProvider = ({ children }: { children: ReactNode }) => {
       .order('created_at', { ascending: false });
 
     if (error || !data) {
-      setImages(galleryImages);
+      setImages([]);
       setVideos([]);
       setLoading(false);
       return;
